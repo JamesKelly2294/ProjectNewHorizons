@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664f968163dd14ed38e7122c1b9c0f3a, type: 3}
+  m_Name: StaticTurretConfiguration
+  m_EditorClassIdentifier: 
+  displayName: Turret
+  type: 0
+  pickupPrefab: {fileID: 3158609300030686922, guid: 5779059a3a07642c399d6c804456b38d, type: 3}
+  deployedPrefab: {fileID: 6457969297087112050, guid: ca8a0c3359a884fe5a6c6daf3887717d, type: 3}
+  blueprintPrefab: {fileID: 8340895127885359677, guid: 70cef06d5caf744908f4c1a9a7bca7c2, type: 3}
+  inventoryIcon: {fileID: 21300000, guid: 19b65a0e38c4b470eac5ce73370fbafd, type: 3}
+  baseMaxCharges: 1
