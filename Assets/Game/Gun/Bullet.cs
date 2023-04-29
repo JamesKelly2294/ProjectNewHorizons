@@ -24,6 +24,6 @@ public class Bullet : MonoBehaviour
         Rigidbody body = GetComponent<Rigidbody>();
         body.velocity = Vector3.zero;
         body.angularVelocity = Vector3.zero;
-        body.AddForce(direction * Speed, ForceMode.Impulse);
+        body.AddForce(direction * Speed * body.mass, ForceMode.Impulse);
     }
 }

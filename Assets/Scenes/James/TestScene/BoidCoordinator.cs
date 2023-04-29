@@ -5,12 +5,13 @@ using UnityEngine;
 public class BoidCoordinator : MonoBehaviour
 {
     public List<BoidFlock> boidFlocks = new List<BoidFlock>();
+    public List<Boid> boids = new List<Boid>();
 
     public void Update()
     {
         foreach (var boidFlock in boidFlocks)
         {
-            boidFlock.Flock();
+            boidFlock.Flock(boids);
         }
     }
 
@@ -32,5 +33,25 @@ public class BoidCoordinator : MonoBehaviour
         }
 
         boidFlocks.Remove(b);
+    }
+
+    public void Register(Boid b)
+    {
+        if (boids.Contains(b))
+        {
+            return;
+        }
+
+        boids.Add(b);
+    }
+
+    public void Unregister(Boid b)
+    {
+        if (!boids.Contains(b))
+        {
+            return;
+        }
+
+        boids.Remove(b);
     }
 }

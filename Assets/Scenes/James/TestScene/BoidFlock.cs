@@ -5,8 +5,11 @@ using UnityEngine;
 public class BoidFlock : MonoBehaviour
 {
     public bool PerformNeighborDistanceCheck = false;
+    public Transform Target;
 
     public List<Boid> boids = new List<Boid>();
+
+    private BoidCoordinator _bc;
 
     public void Awake()
     {
@@ -14,15 +17,16 @@ public class BoidFlock : MonoBehaviour
 
         if (boidCoordinator != null)
         {
-            boidCoordinator.Register(this);
+            _bc = boidCoordinator;
+            _bc.Register(this);
         }
     }
 
-    public void Flock()
+    public void Flock(List<Boid> allBoids)
     {
         foreach (var boid in boids)
         {
-            boid.Flock(boids);
+            boid.Flock(this, allBoids);
         }
     }
 
@@ -34,6 +38,7 @@ public class BoidFlock : MonoBehaviour
         }
 
         boids.Add(b);
+        _bc.Register(b);
     }
 
     public void Unregister(Boid b)
@@ -44,5 +49,6 @@ public class BoidFlock : MonoBehaviour
         }
 
         boids.Remove(b);
+        _bc.Unregister(b);
     }
 }

@@ -27,6 +27,9 @@ public class Boid : MonoBehaviour
     [Range(0.0f, 5.0f)]
     public float CohesionWeight = 1.0f;
 
+    [Range(0.0f, 5.0f)]
+    public float TargetWeight = 1.5f;
+
     private Rigidbody _rb;
 
     private Vector3 _boidAcceleration = Vector3.zero;
@@ -45,6 +48,21 @@ public class Boid : MonoBehaviour
             else
             {
                 return true;
+            }
+        }
+    }
+
+    private Transform TargetTransform
+    {
+        get
+        {
+            if (_myFlock != null)
+            {
+                return _myFlock.Target;
+            }
+            else
+            {
+                return null;
             }
         }
     }
@@ -72,30 +90,49 @@ public class Boid : MonoBehaviour
         _rb.MovePosition(transform.position + (_boidVelocity * Time.fixedDeltaTime));
     }
 
-    public void Flock(List<Boid> boids)
+    public void Flock(BoidFlock boidFlock, List<Boid> allBoids)
     {
         _boidAcceleration = Vector3.zero;
 
         // Calculate forces
-        Vector3 separation = Separate(boids); // don't get too close
-        Vector3 alignment = Align(boids); // try to maintain the same direction as nearby boids
-        Vector3 cohesion = Cohere(boids); // cluster up with nearby boids
+        Vector3 separation = Separate(allBoids); // don't get too close to any boid
+        Vector3 alignment = Align(boidFlock.boids); // try to maintain the same direction as nearby boids
+        Vector3 cohesion = Cohere(boidFlock.boids); // cluster up with nearby boids
+        Vector3 target = Target(TargetTransform); // move toward target if it exists
 
         // Arbitrary weighting
         separation *= SeparationWeight;
         alignment *= AlignmentWeight;
         cohesion *= CohesionWeight;
+        target *= TargetWeight;
 
         // Apply forces
         ApplyForce(separation);
         ApplyForce(alignment);
         ApplyForce(cohesion);
+        ApplyForce(target);
     }
 
 
     private void ApplyForce(Vector3 force)
     {
         _boidAcceleration += force;
+    }
+
+    private Vector3 Target(Transform targetTransform)
+    {
+        if (targetTransform == null) { return Vector3.zero; }
+
+        // For our purposes, ignore y of target
+        Vector3 targetPosition = targetTransform.position;
+        targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+
+        Vector3 steeringForce = Vector3.zero;
+        if (Vector3.Distance(transform.position, targetPosition) > 0.5f)
+        {
+            steeringForce = Seek(targetPosition);
+        }
+        return steeringForce;
     }
 
     private Vector3 Separate(List<Boid> boids)
