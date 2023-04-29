@@ -46,7 +46,7 @@ public class Gun : MonoBehaviour
         }
 
         Vector3 angles = targetRotation.eulerAngles;
-        float rotation = angles.y;
+        float rotation = angles.y - gameObject.transform.rotation.eulerAngles.y;
         if (rotation > 180) {
             rotation -= 360;
         }
@@ -57,7 +57,7 @@ public class Gun : MonoBehaviour
             rotation = minRotation;
         }
 
-        targetRotation = Quaternion.Euler(angles.x, rotation, angles.z);
+        targetRotation = Quaternion.Euler(angles.x, rotation + gameObject.transform.rotation.eulerAngles.y, angles.z);
 
         var step = RotationSpeed * 360 * Time.deltaTime;
         inner.transform.rotation = Quaternion.RotateTowards(inner.transform.rotation, targetRotation, step);
