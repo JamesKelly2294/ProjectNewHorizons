@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class Damageable : MonoBehaviour
+{
+
+    private float maxHealth;
+    public float CurrentHealth = 10f;
+
+    public UnityEvent OnDamage;
+    public UnityEvent OnDeath;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        maxHealth = CurrentHealth;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void TakeDamage(float amount)
+    {
+        CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
+        if (CurrentHealth <= 0) {
+            Debug.Log("Dead!");
+            OnDeath.Invoke();
+            enabled = false;
+        } else {
+            Debug.Log("Took " + amount + " of damage. Now at " + CurrentHealth);
+            OnDamage.Invoke();
+        }
+    }
+
+    public void DebugDeath()
+    {
+        Destroy(gameObject);
+    }
+}

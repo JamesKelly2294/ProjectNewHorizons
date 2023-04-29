@@ -11,12 +11,12 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.GetComponent<Rigidbody>().AddForce(direction * Speed, ForceMode.Impulse);
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localPosition += direction * Speed * Time.deltaTime;
+        
     }
 }
