@@ -59,5 +59,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Purple Checker Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3808408735890979436, guid: f1f95cfebdebe460c864607d61df2e8d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f95cfebdebe460c864607d61df2e8d, type: 3}

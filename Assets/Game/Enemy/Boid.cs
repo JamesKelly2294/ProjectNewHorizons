@@ -17,6 +17,9 @@ public class Boid : MonoBehaviour
     [Range(0.0f, 100.0f)]
     public float NeighborRadius = 50.0f; // boids within this range are considered for calculations
 
+    [Range(0.0f, 10.0f)]
+    public float TargetReachedRange = 1.0f;
+
     [Header("Weighting")]
     [Range(0.0f, 5.0f)]
     public float SeparationWeight = 1.5f;
@@ -128,9 +131,15 @@ public class Boid : MonoBehaviour
         targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
 
         Vector3 steeringForce = Vector3.zero;
-        if (Vector3.Distance(transform.position, targetPosition) > 0.5f)
+        var distance = Vector3.Distance(transform.position, targetPosition);
+        if (distance > 0.001f)
         {
             steeringForce = Seek(targetPosition);
+
+            if (distance < TargetReachedRange)
+            {
+                steeringForce *= (distance / TargetReachedRange);
+            }
         }
         return steeringForce;
     }
