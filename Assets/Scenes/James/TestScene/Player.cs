@@ -65,5 +65,38 @@ public class Player : MonoBehaviour
         //    _rb.velocity += (movementDir.normalized * Acceleration * Time.deltaTime);
         //    _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, MaxSpeed);
         //}
+
+        CheckForInteractable();
+    }
+
+    Interactable currentInteractable;
+    void CheckForInteractable() {
+        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 2f);
+        List<Interactable> currentlyIntersectedInteractables = new List<Interactable>();
+        Interactable closestInteractable = null;
+        float closestInteractableDistance = 1000f;
+        foreach (var collision in colliders) {
+            Interactable i = collision.gameObject.GetComponent<Interactable>();
+            if (i != null && i.enabled == true) {
+                currentlyIntersectedInteractables.Add(i);
+                float distance = Vector3.Distance(collision.gameObject.transform.position, gameObject.transform.position);
+                if (closestInteractable == null || distance < closestInteractableDistance) {
+                    closestInteractable = i;
+                    closestInteractableDistance = distance;
+                }
+            }
+        }
+        
+        if (closestInteractable != currentInteractable) {
+            if (currentInteractable != null) {
+                currentInteractable.SetAbleToInteract(false);
+            }
+
+            currentInteractable = closestInteractable;
+
+            if (currentInteractable != null) {
+                currentInteractable.SetAbleToInteract(true);
+            }
+        }
     }
 }
