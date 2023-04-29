@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Damager : MonoBehaviour
 {
 
     public float Damage = 1f;
+
+    public UnityEvent OnDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class Damager : MonoBehaviour
         Damageable d = collision.gameObject.GetComponent<Damageable>();
         if (d != null && d.enabled == true) {
             d.TakeDamage(Damage);
-            Destroy(gameObject);
+            OnDamage.Invoke();
         }
     }
 }

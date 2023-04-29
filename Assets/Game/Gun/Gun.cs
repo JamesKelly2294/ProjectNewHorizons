@@ -16,15 +16,18 @@ public class Gun : MonoBehaviour
     public float RotationSpeed = 2f;
     private Quaternion targetRotation;
 
-    public float FireTime = 0.5f; // How long to wait before shooting the next shot
+    public AnimationCurve FireTimeCurve; // How long to wait before shooting the next shot
+    private float currentFireTimeCurvePosition = 0;
+    public float MaxFireTimeCurveTime = 5f;
     private float currentFireTimeValue = 0f;
     public AnimationCurve RecoilCurve;
+    private float recoilTime = 1;
     public ParticleSystem MuzzleFlashParticleSystem;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -67,18 +70,30 @@ public class Gun : MonoBehaviour
         // Shoot when we click
         if (currentFireTimeValue == 0 && Input.GetMouseButton(0))
         {
-            GameObject bullet = Instantiate(bulletPrefab);
+            GameObject bullet = ObjectPooler.Instance.GetPooledObject(bulletPrefab.tag);
+            ObjectPooler.Instance.ReturnObjectToPoolAfterDelay(bullet, 5f);
             bullet.transform.position = bulletSpawn.transform.position;
-            bullet.GetComponent<Bullet>().direction = (bulletSpawn.transform.position - barrel.transform.position).normalized;
+            bullet.transform.rotation = bulletSpawn.transform.rotation;
+            bullet.SetActive(true);
+            bullet.GetComponent<Bullet>().Fire((bulletSpawn.transform.position - barrel.transform.position).normalized);
+            
 
             // Reset the value to rate of fire
-            currentFireTimeValue = FireTime;
+            currentFireTimeValue = FireTimeCurve.Evaluate(currentFireTimeCurvePosition);
+            recoilTime = currentFireTimeValue;
+            Debug.Log(currentFireTimeCurvePosition);
 
             MuzzleFlashParticleSystem.Play();
             GetComponent<AudioSource>().Play();
         }
 
         // Update the barrel position to account for recoil
-        barrel.transform.localPosition = new Vector3(0, 0, RecoilCurve.Evaluate(1f - (currentFireTimeValue / FireTime)));
+        barrel.transform.localPosition = new Vector3(0, 0, RecoilCurve.Evaluate(1f - (currentFireTimeValue / recoilTime)));
+
+        if (Input.GetMouseButton(0)) {
+            currentFireTimeCurvePosition = Mathf.Min(MaxFireTimeCurveTime, currentFireTimeCurvePosition + Time.deltaTime);
+        } else {
+            currentFireTimeCurvePosition = Mathf.Max(0, currentFireTimeCurvePosition - Time.deltaTime);
+        }
     }
 }
