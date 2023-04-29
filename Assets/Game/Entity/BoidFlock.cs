@@ -22,6 +22,11 @@ public class BoidFlock : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        _bc.Unregister(this);
+    }
+
     public void Flock(List<Boid> allBoids)
     {
         foreach (var boid in boids)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTarget : MonoBehaviour
+public class EntityTarget : MonoBehaviour
 {
     private Vector3 _initialPos;
     private float _initialSeed;
@@ -20,9 +20,11 @@ public class EnemyTarget : MonoBehaviour
     void Start()
     {
         _mr = GetComponent<MeshRenderer>();
+
+        Reset();
     }
 
-    private void OnEnable()
+    private void Reset()
     {
         _initialPos = transform.position;
         _initialSeed = Random.Range(0.0f, 100.0f);

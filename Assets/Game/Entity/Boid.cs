@@ -70,7 +70,7 @@ public class Boid : MonoBehaviour
         }
     }
 
-    public void Awake()
+    public void Start()
     {
         _rb = GetComponent<Rigidbody>();
 
@@ -81,6 +81,11 @@ public class Boid : MonoBehaviour
             boidFlock.Register(this);
             _myFlock = boidFlock;
         }
+    }
+
+    private void OnDestroy()
+    {
+        _myFlock.Unregister(this);
     }
 
     public void FixedUpdate()

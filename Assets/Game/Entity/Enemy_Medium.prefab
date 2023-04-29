@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4806057279337751359}
   - component: {fileID: 8588758989375989329}
   m_Layer: 0
-  m_Name: AI Enabled Enemy (Test)
+  m_Name: Enemy_Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
