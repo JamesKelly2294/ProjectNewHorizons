@@ -12,8 +12,8 @@ public class LoseScene : MonoBehaviour
     void Start()
     {
         GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-        shots.text = "" + gameManager.pastState.timesShot + " Shots Fired";
-        xp.text = "" + gameManager.pastState.totalXPGained + " XP Gained";
+        //shots.text = "" + gameManager.pastState.timesShot + " Shots Fired";
+        //xp.text = "" + gameManager.pastState.totalXPGained + " XP Gained";
     }
 
     // Update is called once per frame

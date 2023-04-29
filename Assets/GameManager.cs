@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
 
     public string loadGameSceneName;
 
-    public SpookyGameSummaryState pastState;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -51,10 +49,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GetSceneLoadProgress());
     }
 
-    public void ShowLoseScreen(SpookyGameSummaryState state)
+    public void ShowLoseScreen()
     {
         _activeLoadingScreen = transitionalLoadingScreen;
-        pastState = state;
+
         _activeLoadingScreen.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(loadGameSceneName));
 
@@ -63,10 +61,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GetSceneLoadProgress());
     }
 
-    public void ShowWinScreen(SpookyGameSummaryState state)
+    public void ShowWinScreen()
     {
         _activeLoadingScreen = transitionalLoadingScreen;
-        pastState = state;
+
         _activeLoadingScreen.SetActive(true);
         scenesLoading.Add(SceneManager.UnloadSceneAsync(loadGameSceneName));
 
