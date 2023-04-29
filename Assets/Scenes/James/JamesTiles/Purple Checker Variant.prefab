@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 277098606762963662, guid: f1f95cfebdebe460c864607d61df2e8d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 60ae3fd95e78b4d00b93684448fa2a60, type: 2}
+      objectReference: {fileID: 2100000, guid: 3b53397b83729b842b8fcc82a85ebb66, type: 2}
     - target: {fileID: 1478704982591166216, guid: f1f95cfebdebe460c864607d61df2e8d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2322455649408017898, guid: f1f95cfebdebe460c864607d61df2e8d, type: 3}
       propertyPath: m_Name
-      value: Purple Checker
+      value: Purple Checker Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f95cfebdebe460c864607d61df2e8d, type: 3}
