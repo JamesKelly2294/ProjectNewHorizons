@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class BoidCoordinator : MonoBehaviour
 {
-    public List<Boid> boids = new List<Boid>();
+    public List<BoidFlock> boidFlocks = new List<BoidFlock>();
 
     public void Update()
     {
-        foreach (var boid in boids)
+        foreach (var boidFlock in boidFlocks)
         {
-            boid.Flock(boids);
+            boidFlock.Flock();
         }
     }
 
-    // The boid coordinator will ultimately be responsible for creating flocks
-    // For now, we will just have boids register themselves with the coordinator on awake
-    public void Register(Boid b)
+    public void Register(BoidFlock b)
     {
+        if (boidFlocks.Contains(b))
+        {
+            return;
+        }
 
+        boidFlocks.Add(b);
+    }
+
+    public void Unregister(BoidFlock b)
+    {
+        if (!boidFlocks.Contains(b))
+        {
+            return;
+        }
+
+        boidFlocks.Remove(b);
     }
 }
