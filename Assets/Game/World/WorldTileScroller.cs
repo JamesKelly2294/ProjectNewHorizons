@@ -12,7 +12,8 @@ public class WorldTileScroller : MonoBehaviour
 
     public float Speed = 20f;
     public float TileSpacing = 100f;
-    public int NumberOfTilesPerAxisToRenderInEachDirection = 3; // Radius
+    public int NumColumns = 3; // Radius
+    public int NumRows = 3; // Radius
 
     private float currentOffset = 0f;
 
@@ -20,9 +21,10 @@ public class WorldTileScroller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = -NumberOfTilesPerAxisToRenderInEachDirection; i < NumberOfTilesPerAxisToRenderInEachDirection; i++)
+        var rowStartingPoint = -((TileSpacing * NumRows) / 2.0f) + TileSpacing / 2.0f;
+        for (int i = 0; i < NumRows; i++)
         {
-            SpawnColumn( i * TileSpacing);
+            SpawnRow( i * TileSpacing + rowStartingPoint);
         }
     }
 
@@ -32,31 +34,41 @@ public class WorldTileScroller : MonoBehaviour
         currentOffset += Time.deltaTime * Speed;
         foreach (var tile in activeTiles)
         {
-            tile.gameObject.transform.localPosition += new Vector3(-Speed, 0, 0) * Time.deltaTime;
+            tile.gameObject.transform.localPosition += new Vector3(0, 0, -Speed) * Time.deltaTime;
         }
 
         if (currentOffset > TileSpacing) {
             currentOffset -= TileSpacing;
-            SpawnColumn(((NumberOfTilesPerAxisToRenderInEachDirection - 1) * TileSpacing) - currentOffset);
 
-            // Delete oldest column
-            int n = (NumberOfTilesPerAxisToRenderInEachDirection * 2) - 1;
-            for (int i = 0; i < n; i++)
+            var rowStartingPoint = -((TileSpacing * NumRows) / 2.0f) + TileSpacing / 2.0f;
+            var newRowOffset = rowStartingPoint + ((NumRows - 1) * TileSpacing) - currentOffset;
+            SpawnRow(newRowOffset);
+
+            // Delete oldest row
+            for (int i = 0; i < NumColumns; i++)
             {
                 Destroy(activeTiles[i].gameObject);
             }
-            activeTiles.RemoveRange(0, n);
+            activeTiles.RemoveRange(0, NumColumns);
         }
     }
 
-    void SpawnColumn(float x)
+    void SpawnRow(float verticalOffset)
     {
-        SpawnRandomTile(CenterTiles, x, 0);
+        float totalHorizontalOffset = NumColumns * TileSpacing;
 
-        for (int i = 1; i < NumberOfTilesPerAxisToRenderInEachDirection; i++)
+        for (int i = 0; i < NumColumns; i++)
         {
-            SpawnRandomTile(OuterTiles, x,  i * TileSpacing);
-            SpawnRandomTile(OuterTiles, x, -i * TileSpacing);
+            float horizontalOffset = (i * TileSpacing + TileSpacing / 2.0f) - (totalHorizontalOffset / 2.0f);
+
+            if (i == 0 || i == NumColumns - 1)
+            {
+                SpawnRandomTile(OuterTiles, horizontalOffset, verticalOffset);
+            }
+            else
+            {
+                SpawnRandomTile(CenterTiles, horizontalOffset, verticalOffset);
+            }
         }
 
     }

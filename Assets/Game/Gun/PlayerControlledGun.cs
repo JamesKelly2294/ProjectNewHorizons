@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PubSubSender))]
 public class PlayerControlledGun : MonoBehaviour
 {
     private Gun gun;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
+    private PubSubSender pubSubSender;
+
     // Start is called before the first frame update
     void Start()
     {
         gun = GetComponent<Gun>();
         enabled = false;
+        pubSubSender = GetComponent<PubSubSender>();
     }
 
     // Update is called once per frame
@@ -28,7 +32,17 @@ public class PlayerControlledGun : MonoBehaviour
             gun.RequestedPosition = mouseRay.GetPoint(hitDistance);
         }
 
+        bool wasShooting = gun.ShouldFireWhenReady;
         gun.ShouldFireWhenReady = Input.GetMouseButton(0);
+
+        if (wasShooting && !gun.ShouldFireWhenReady)
+        {
+            pubSubSender.Publish("player.shootingStop");
+        }
+        else if (!wasShooting && gun.ShouldFireWhenReady)
+        {
+            pubSubSender.Publish("player.shootingStart");
+        }
     }
 
     public void BeginControl(Player player)

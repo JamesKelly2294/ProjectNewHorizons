@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3421406857245236025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.29125, y: -75.85416, z: -32.420296}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,11 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CenterTiles:
-  - {fileID: 8357134416821922107, guid: cd37f3afd70d7415c8f27c7ac26a2bf5, type: 3}
-  - {fileID: 343649823100042706, guid: 5c760808dd94b4e368f71206bfbba9bb, type: 3}
+  - {fileID: 8357134416821922107, guid: 0364f7bccee024142a21802f96993ed5, type: 3}
+  - {fileID: 343649823100042706, guid: 6832bc02b71196946ade75f52e8a5558, type: 3}
   OuterTiles:
-  - {fileID: 1389716164424518800, guid: 3562806021a07487a8b29b866a0fdf31, type: 3}
-  - {fileID: 5903986620630616172, guid: d659bc29fb22f4cf2a4fc4ec16784f62, type: 3}
+  - {fileID: 1389716164424518800, guid: 43edda7d99ecf374a9805b2edd13b3c2, type: 3}
+  - {fileID: 5903986620630616172, guid: aeb35d333171a1d4c813de5fc4453de0, type: 3}
   Speed: 200
   TileSpacing: 100
-  NumberOfTilesPerAxisToRenderInEachDirection: 3
+  NumColumns: 5
+  NumRows: 5

@@ -4,47 +4,51 @@ using UnityEngine;
 
 public class CameraSway : MonoBehaviour
 {
-    // Transform of the camera to shake. Grabs the gameObject's transform
-    // if null.
-    public Transform camTransform;
-
-    // How long the object should shake for.
     public float shakeDuration = 0.25f;
-
-    // Amplitude of the shake. A larger value shakes the camera harder.
     public float shakeAmount = 0.7f;
-    public float decreaseFactor = 1.0f;
+    public float shootingShakeAmount = 0.025f;
+    public float shootingShakeDuration = 0.1f;
 
+    private Vector3 targetPosition;
+    private float t;
 
-
-    Vector3 targetPosition;
-    float t;
-
-    Vector3 originalPos;
-
-    void Awake()
-    {
-        if (camTransform == null)
-        {
-            camTransform = GetComponent(typeof(Transform)) as Transform;
-        }
-    }
+    private Vector3 originalPos;
 
     void OnEnable()
     {
-        originalPos = camTransform.localPosition;
+        originalPos = transform.localPosition;
         targetPosition = originalPos;
+    }
+
+    private bool _playerIsShooting = false;
+    public void PlayerShootingStart()
+    {
+        _playerIsShooting = true;
+        ResetShake();
+    }
+
+    public void PlayerShootingStop()
+    {
+        _playerIsShooting = false;
+        ResetShake();
+    }
+
+    void ResetShake()
+    {
+        float realShakeAmount = _playerIsShooting ? shootingShakeAmount : shakeAmount;
+        targetPosition = originalPos + Random.insideUnitSphere * realShakeAmount;
+        t = 0.0f;
     }
 
     void Update()
     {
         if (Vector3.Distance(transform.position, targetPosition) < 0.0001f)
         {
-            targetPosition = originalPos + Random.insideUnitSphere * shakeAmount;
-            t = 0.0f;
+            ResetShake();
         }
 
-        transform.position = Vector3.Slerp(transform.position, targetPosition, t / shakeDuration);
+        float realShakeDuration = _playerIsShooting ? shootingShakeDuration : shakeDuration;
+        transform.position = Vector3.Slerp(transform.position, targetPosition, t / realShakeDuration);
 
         t += Time.deltaTime;
     }

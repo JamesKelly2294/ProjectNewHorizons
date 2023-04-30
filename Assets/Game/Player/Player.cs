@@ -54,24 +54,6 @@ public class Player : MonoBehaviour
             _rb.velocity = movementDir.normalized * MaxSpeed;
         }
 
-        //if (movementDir == Vector3.zero)
-        //{
-        //    if (_rb.velocity.sqrMagnitude > 0.1)
-        //    {
-        //        _rb.velocity -= (_rb.velocity * DecelerationMultiplier * Time.deltaTime);
-        //    }
-        //    else
-        //    {
-        //        _rb.velocity = Vector3.zero;
-        //    }
-        //}
-        //else
-        //{
-        //    // moving, accelerate to target
-        //    _rb.velocity += (movementDir.normalized * Acceleration * Time.deltaTime);
-        //    _rb.velocity = Vector3.ClampMagnitude(_rb.velocity, MaxSpeed);
-        //}
-
         CheckForInteractable();
     }
 
