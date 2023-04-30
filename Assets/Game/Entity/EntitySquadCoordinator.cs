@@ -64,7 +64,54 @@ public class EntitySquadCoordinator : MonoBehaviour
 
     public Vector3 SelectSpawnPosition(TrainSide side)
     {
-        return new Vector3(0, 0, 100.0f);
+        // Z Val
+        bool spawnFromSide = Random.Range(0, 1.0f) > 0.66f;
+        var forwardExtent = _theTrain.ForwardExtent();
+        var aftExtent = _theTrain.AftExtent();
+
+        Ray horizontalExtentRayTop = Camera.main.ViewportPointToRay(new Vector3(0.5f, 1f, 0));
+        Ray horizontalExtentRayBottom = Camera.main.ViewportPointToRay(new Vector3(.5f, 0f, 0));
+        var hitPointTop = CastToTheEternalPlane(horizontalExtentRayTop);
+        var hitPointBottom = CastToTheEternalPlane(horizontalExtentRayBottom);
+        var longitudinalRange = Vector3.Distance(hitPointTop, hitPointBottom);
+
+        var zVal = 0.0f;
+        if (spawnFromSide)
+        {
+            zVal = aftExtent.z + Random.Range(0, longitudinalRange);
+        }
+        else
+        {
+            bool spawnFromTop = Random.Range(0, 1.0f) > 0.5f;
+            if (spawnFromTop)
+            {
+                zVal = forwardExtent.z + longitudinalRange;
+            }
+            else
+            {
+                zVal = aftExtent.z - longitudinalRange;
+            }
+        }
+
+
+        // X Val
+        Ray horizontalExtentRayLeft = Camera.main.ViewportPointToRay(new Vector3(0, 1, 0));
+        Ray horizontalExtentRayRight = Camera.main.ViewportPointToRay(new Vector3(1, 1, 0));
+        var hitPointLeft = CastToTheEternalPlane(horizontalExtentRayLeft);
+        var hitPointRight = CastToTheEternalPlane(horizontalExtentRayRight);
+        var maxLateralRange = Vector3.Distance(hitPointLeft, hitPointRight);
+        var sign = side == TrainSide.Left ? -1 : 1;
+        var xVal = 0.0f;
+        if (spawnFromSide)
+        {
+            xVal = sign * maxLateralRange;
+        }
+        else
+        {
+            xVal = forwardExtent.x + sign * Random.Range(0, maxLateralRange);
+        }
+
+        return new Vector3(xVal, forwardExtent.y, zVal);
     }
 
     private Vector3 CastToTheEternalPlane(Ray ray)
