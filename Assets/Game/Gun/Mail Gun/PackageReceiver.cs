@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class PackageReceiver : MonoBehaviour
 {
     public bool WantsPackage = false;
-    public PackageType PackageType = PackageType.cat;
+    public PackageType PackageType = PackageType.automaton;
 
     public UnityEvent OnReceipt; // Called when they get the package they wanted
 

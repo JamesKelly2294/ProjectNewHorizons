@@ -5221,7 +5221,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3332565298295124252, guid: 91e047e5c4ef04fcbaff00b33016fd7f, type: 3}
   GunOperator: {fileID: 0}
   GunOperatorPosition: {fileID: 8814002088404825275}
-  PackageType: 0
   RequestedPosition: {x: 0, y: 0, z: 0}
   ShouldFireWhenReady: 0
   minRotation: -90
@@ -5553,6 +5552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efff978a5aa2b473a8a06815a69ba94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PackageGun: 1
 --- !u!114 &4856016322347222408
 MonoBehaviour:
   m_ObjectHideFlags: 0

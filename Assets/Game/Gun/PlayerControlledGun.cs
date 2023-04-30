@@ -8,6 +8,7 @@ public class PlayerControlledGun : MonoBehaviour
     private Gun gun;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+    public bool PackageGun = false;
 
     private PubSubSender pubSubSender;
 
@@ -34,6 +35,23 @@ public class PlayerControlledGun : MonoBehaviour
 
         bool wasShooting = gun.ShouldFireWhenReady;
         gun.ShouldFireWhenReady = Input.GetMouseButton(0);
+
+        if (PackageGun) {
+            gun.PackageType = Inventory.Instance.SelectionType;
+
+            // Can't shoot if the current package is null
+            if (Inventory.Instance.SelectionType == null) {
+                gun.ShouldFireWhenReady = false;
+
+            // Can't shoot if we don't have at least one package of this type
+            } else {
+                PackageType packageType = (PackageType) Inventory.Instance.SelectionType;
+                if (!Inventory.Instance.PackageInventory.ContainsKey(packageType) ||  Inventory.Instance.PackageInventory[packageType] <= 0) {
+                    gun.ShouldFireWhenReady = false;
+                }
+            }
+        }
+        
 
         if (wasShooting && !gun.ShouldFireWhenReady)
         {

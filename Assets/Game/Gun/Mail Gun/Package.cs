@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Package : MonoBehaviour
 {
 
-    public PackageType PackageType = PackageType.cat;
+    public PackageType PackageType = PackageType.automaton;
 
     public UnityEvent OnReceipt; // Called if the package was received by the right person
 
@@ -36,6 +36,14 @@ public class Package : MonoBehaviour
 
 public enum PackageType
 {
-    cat,
-    dog
+    automaton,
+    camera,
+    gears,
+    goggles,
+    keyboard,
+    masqueradeMask,
+    musicBox,
+    necklace,
+    pocketWatch,
+    steamPipe,
 }

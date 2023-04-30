@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject GunOperator;
     public GameObject GunOperatorPosition;
-    public PackageType PackageType; // Used if the bullet is actually a package...
+    public PackageType? PackageType; // Used if the bullet is actually a package...
 
     public Vector3 RequestedPosition;
     public bool ShouldFireWhenReady = false;
@@ -75,21 +75,23 @@ public class Gun : MonoBehaviour
             ObjectPooler.Instance.ReturnObjectToPoolAfterDelay(bullet, 5f);
             bullet.transform.position = bulletSpawn.transform.position;
             bullet.transform.rotation = bulletSpawn.transform.rotation;
-            bullet.SetActive(true);
-            bullet.GetComponent<Bullet>().Fire((bulletSpawn.transform.position - barrel.transform.position).normalized);
-
+            
             // Set the package type if the bullet is a package.
             Package p = bullet.GetComponent<Package>();
-            if (p != null)
+            if (p != null && PackageType != null)
             {
-                p.PackageType = PackageType;
+                p.PackageType = (PackageType) PackageType;
+                GetComponent<PubSubSender>().Publish("packageGun.shot", p);
             }
+
+            // Fire it
+            bullet.SetActive(true);
+            bullet.GetComponent<Bullet>().Fire((bulletSpawn.transform.position - barrel.transform.position).normalized);
             
 
             // Reset the value to rate of fire
             currentFireTimeValue = FireTimeCurve.Evaluate(currentFireTimeCurvePosition);
             recoilTime = currentFireTimeValue;
-            Debug.Log(currentFireTimeCurvePosition);
 
             MuzzleFlashParticleSystem.Play();
             GetComponent<AudioSource>().Play();
