@@ -12,6 +12,12 @@ public class StatusBar : MonoBehaviour
     public TextMeshProUGUI OriginCityNameText;
     public TextMeshProUGUI DestinationCityNameText;
 
+    public TextMeshProUGUI PendingBoxCountText;
+    public TextMeshProUGUI DeliveredBoxCountText;
+    public TextMeshProUGUI FailedBoxCountText;
+    public TextMeshProUGUI MoneyText;
+    public TextMeshProUGUI LifetimePackageDeliveryText;
+
     void Awake()
     {
         if (Instance != null) {

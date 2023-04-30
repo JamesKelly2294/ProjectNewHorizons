@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2575838184109629822}
   - component: {fileID: 1202761345993581248}
   - component: {fileID: 2464918411870728684}
+  - component: {fileID: 7641797797558160804}
   m_Layer: 0
   m_Name: Package
   m_TagString: Untagged
@@ -203,3 +204,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7641797797558160804}
+        m_TargetAssemblyTypeName: PubSubSender, Assembly-CSharp
+        m_MethodName: Publish
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: package.delivered
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnFailure:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3332565298295124252}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7641797797558160804}
+        m_TargetAssemblyTypeName: PubSubSender, Assembly-CSharp
+        m_MethodName: Publish
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: package.failed
+          m_BoolArgument: 0
+        m_CallState: 2
+  ttl: 5
+--- !u!114 &7641797797558160804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332565298295124252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f292d19e8ac687f4796ed88f9f22cd01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

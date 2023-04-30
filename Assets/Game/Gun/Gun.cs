@@ -72,7 +72,6 @@ public class Gun : MonoBehaviour
         if (currentFireTimeValue == 0 && ShouldFireWhenReady)
         {
             GameObject bullet = ObjectPooler.Instance.GetPooledObject(bulletPrefab.name);
-            ObjectPooler.Instance.ReturnObjectToPoolAfterDelay(bullet, 5f);
             bullet.transform.position = bulletSpawn.transform.position;
             bullet.transform.rotation = bulletSpawn.transform.rotation;
             
@@ -82,6 +81,10 @@ public class Gun : MonoBehaviour
             {
                 p.PackageType = (PackageType) PackageType;
                 GetComponent<PubSubSender>().Publish("packageGun.shot", p);
+
+            // Packages manage their own lifetime
+            } else {
+                ObjectPooler.Instance.ReturnObjectToPoolAfterDelay(bullet, 5f);
             }
 
             // Fire it

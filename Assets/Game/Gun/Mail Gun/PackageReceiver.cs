@@ -26,12 +26,16 @@ public class PackageReceiver : MonoBehaviour
     {
         if (WantsPackage && PackageType == type)
         {
-            WantsPackage = false;
             OnReceipt.Invoke();
             return true;
         }
 
         return false;
+    }
+
+    public void SetWantsPackage(bool wants)
+    {
+        WantsPackage = wants;
     }
 
     public void DebugDeath()
