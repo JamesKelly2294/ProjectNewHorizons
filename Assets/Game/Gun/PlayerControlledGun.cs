@@ -12,6 +12,8 @@ public class PlayerControlledGun : MonoBehaviour
 
     private PubSubSender pubSubSender;
 
+    private float soundTimeout = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,8 @@ public class PlayerControlledGun : MonoBehaviour
         }
 
         bool wasShooting = gun.ShouldFireWhenReady;
-        gun.ShouldFireWhenReady = Input.GetMouseButton(0);
+        bool wantsToShoot = Input.GetMouseButton(0);
+        gun.ShouldFireWhenReady = wantsToShoot;
 
         if (PackageGun) {
             gun.PackageType = Inventory.Instance.SelectionType;
@@ -50,8 +53,17 @@ public class PlayerControlledGun : MonoBehaviour
                     gun.ShouldFireWhenReady = false;
                 }
             }
+
+            soundTimeout = Mathf.Max(0, soundTimeout - Time.deltaTime);
+            if (wantsToShoot && !gun.ShouldFireWhenReady && !wasShooting) {
+                if (soundTimeout == 0) {
+                    PlayOutOfPackagesSound();
+                    soundTimeout = 5f;
+                }
+            } else {
+                soundTimeout = 0.01f;
+            }
         }
-        
 
         if (wasShooting && !gun.ShouldFireWhenReady)
         {
@@ -61,6 +73,11 @@ public class PlayerControlledGun : MonoBehaviour
         {
             pubSubSender.Publish("player.shootingStart");
         }
+    }
+
+    public void PlayOutOfPackagesSound()
+    {
+        AudioManager.Instance.Play("Package/Out");
     }
 
     public void BeginControl(Player player)

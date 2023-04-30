@@ -74,11 +74,13 @@ public class SteamyGameManager : MonoBehaviour
     public void PackageDelivered()
     {
         DeliveredBoxCount += 1;
+        AudioManager.Instance.Play("Package/Delivered");
     }
 
     public void PackageFailedToBeDelivered()
     {
         FailedBoxCount += 1;
+        AudioManager.Instance.Play("Package/Failed");
     }
 }
 
