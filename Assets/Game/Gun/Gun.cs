@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour
     public Vector3 RequestedPosition;
     public bool ShouldFireWhenReady = false;
 
+    public bool LimitRotation = true;
     public float minRotation = -90;
     public float maxRotation = 90;
 
@@ -53,10 +54,16 @@ public class Gun : MonoBehaviour
             rotation -= 360;
         }
 
-        if (rotation > maxRotation) {
-            rotation = maxRotation;
-        } else if (rotation < minRotation) {
-            rotation = minRotation;
+        if (LimitRotation)
+        {
+            if (rotation > maxRotation)
+            {
+                rotation = maxRotation;
+            }
+            else if (rotation < minRotation)
+            {
+                rotation = minRotation;
+            }
         }
 
         var step = RotationSpeed * 360 * Time.deltaTime;

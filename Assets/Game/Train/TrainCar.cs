@@ -99,4 +99,16 @@ public class TrainCar : MonoBehaviour
 
         SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
     }
+
+    public bool IsSideDestroyed(TrainSide side)
+    {
+        if (side == TrainSide.Left)
+        {
+            return leftSideDamageable.CurrentHealth <= 0;
+        }
+        else
+        {
+            return rightSidDamageable.CurrentHealth <= 0;
+        }
+    }
 }

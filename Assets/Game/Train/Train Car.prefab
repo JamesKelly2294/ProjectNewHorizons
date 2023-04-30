@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5778133426889332071}
   - component: {fileID: 4490479407327061089}
   - component: {fileID: 7557606618272601339}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Forward Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2664291126614826246}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Damageables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8960724189122925004}
   - component: {fileID: 8808060202601128915}
   - component: {fileID: 1693441347249478733}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: RightSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd0cc64ef604192911d9e984982754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 10
+  CurrentHealth: 100
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -864,7 +864,7 @@ GameObject:
   - component: {fileID: 3899833011309140304}
   - component: {fileID: 7208857294923355128}
   - component: {fileID: 4456158243071794300}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Main Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 6332595854610910906}
   - component: {fileID: 1442152646935520893}
   - component: {fileID: 5832464931297903438}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Main Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 1783403151222783504}
   - component: {fileID: 4634706648799022712}
   - component: {fileID: 5209321600764055490}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Aft Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1684,7 @@ GameObject:
   - component: {fileID: 4044714024533250148}
   - component: {fileID: 6691835803469534573}
   - component: {fileID: 7796062769464384346}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Aft Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1876,7 @@ GameObject:
   - component: {fileID: 121759290490956249}
   - component: {fileID: 2701968562265013857}
   - component: {fileID: 6331273631296141222}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LeftSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd0cc64ef604192911d9e984982754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 10
+  CurrentHealth: 100
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -2348,7 +2348,7 @@ GameObject:
   - component: {fileID: 3352013781248745149}
   - component: {fileID: 4569399831393028492}
   - component: {fileID: 5841360689725942896}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Forward Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -85,7 +85,10 @@ public class Boid : MonoBehaviour
 
     private void OnDestroy()
     {
-        _myFlock.Unregister(this);
+        if (_myFlock != null)
+        {
+            _myFlock.Unregister(this);
+        }
     }
 
     public void FixedUpdate()

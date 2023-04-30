@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 4424910263592909912, guid: a4450e7c3759655488962af9a929847e, type: 3}
   StartingTrainCarPrefabs:
-  - {fileID: 1052283326658444984, guid: d76f661219770ed45943ba1ba6e0d515, type: 3}
-  - {fileID: 1052283326658444984, guid: dcf1fb6cc0915ea4487baf5c6d82d156, type: 3}
+  - {fileID: 3382950471246956835, guid: d7a346c800993fe4485669aa92fc2cd5, type: 3}
+  - {fileID: 7828110802163125479, guid: 9612d9a00c1077848bd3e3140bd050d0, type: 3}
   TrainCars: []
   ForwardCollider: {fileID: 8242433250644017744}
   AftCollider: {fileID: 5337801741929380711}

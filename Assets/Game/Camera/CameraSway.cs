@@ -42,13 +42,13 @@ public class CameraSway : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, targetPosition) < 0.0001f)
+        if (Vector3.Distance(transform.localPosition, targetPosition) < 0.0001f)
         {
             ResetShake();
         }
 
         float realShakeDuration = _playerIsShooting ? shootingShakeDuration : shakeDuration;
-        transform.position = Vector3.Slerp(transform.position, targetPosition, t / realShakeDuration);
+        transform.localPosition = Vector3.Slerp(transform.localPosition, targetPosition, t / realShakeDuration);
 
         t += Time.deltaTime;
     }
