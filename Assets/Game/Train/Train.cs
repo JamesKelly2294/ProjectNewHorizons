@@ -18,7 +18,6 @@ public class Train : MonoBehaviour
     {
         var playerGO = Instantiate(PlayerPrefab);
         playerGO.transform.name = "Player";
-        // TODO: Set position to center of first train car
         playerGO.transform.position = transform.position + new Vector3(0.0f, 0.75f, 0.0f);
         
         for (var i = 0; i < StartingTrainCarPrefabs.Count; i++)
