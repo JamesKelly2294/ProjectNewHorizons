@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     Rigidbody _rb;
 
+    public bool IsInteracting = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,29 +26,33 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movementDir = Vector3.zero;
 
-        Vector3 camRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
-        Vector3 camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+        if (!IsInteracting) 
+        {
+            Vector3 movementDir = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            movementDir += camForward;
-        } else if (Input.GetKey(KeyCode.S))
-        {
-            movementDir -= camForward;
+            Vector3 camRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+            Vector3 camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                movementDir += camForward;
+            } else if (Input.GetKey(KeyCode.S))
+            {
+                movementDir -= camForward;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                movementDir -= camRight;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                movementDir += camRight;
+            }
+
+            _rb.velocity = movementDir.normalized * MaxSpeed;
         }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            movementDir -= camRight;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            movementDir += camRight;
-        }
-
-        _rb.velocity = movementDir.normalized * MaxSpeed;
 
         //if (movementDir == Vector3.zero)
         //{
@@ -71,6 +77,8 @@ public class Player : MonoBehaviour
 
     Interactable currentInteractable;
     void CheckForInteractable() {
+
+        // Find the interactables around the player, find the closest in the process too
         Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 2f);
         List<Interactable> currentlyIntersectedInteractables = new List<Interactable>();
         Interactable closestInteractable = null;
@@ -87,8 +95,13 @@ public class Player : MonoBehaviour
             }
         }
         
+        // Set the current interactable that we are going to target, and let it know what we are wanting to do
         if (closestInteractable != currentInteractable) {
             if (currentInteractable != null) {
+                if (currentInteractable.IsInteracting) {
+                    currentInteractable.SetInteracting(false, this);
+                }
+
                 currentInteractable.SetAbleToInteract(false);
             }
 
@@ -97,6 +110,12 @@ public class Player : MonoBehaviour
             if (currentInteractable != null) {
                 currentInteractable.SetAbleToInteract(true);
             }
+        }
+
+        // Enter or exit interacting with an interactable
+        if (currentInteractable != null && Input.GetKeyDown(KeyCode.E)) 
+        {
+            currentInteractable.SetInteracting(!currentInteractable.IsInteracting, this);
         }
     }
 }

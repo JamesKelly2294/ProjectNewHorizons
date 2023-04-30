@@ -9,8 +9,8 @@ public class Interactable : MonoBehaviour
     public bool IsInteracting = false;
     public bool AbleToInteract = false;
 
-    public UnityEvent BeginInteraction;
-    public UnityEvent EndInteraction;
+    public UnityEvent<Player> BeginInteraction;
+    public UnityEvent<Player> EndInteraction;
 
     public UnityEvent ShowInteractionPopup;
     public UnityEvent HideInteractionPopup;
@@ -27,14 +27,14 @@ public class Interactable : MonoBehaviour
         
     }
 
-    public void SetInteracting(bool isInteracting)
+    public void SetInteracting(bool isInteracting, Player player)
     {
         if (isInteracting != IsInteracting) {
             IsInteracting = isInteracting;
             if (isInteracting) {
-                BeginInteraction.Invoke();
+                BeginInteraction.Invoke(player);
             } else {
-                EndInteraction.Invoke();
+                EndInteraction.Invoke(player);
             }
         }
     }
