@@ -61,4 +61,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EasyEntityPrefab: {fileID: 997667846679041836, guid: ea5ec437639910445b3353b629ebda13, type: 3}
-  MediumEntityPrefab: {fileID: 997667846679041836, guid: d400b07247619724293f766740feeadf, type: 3}
+  MediumEntityPrefab: {fileID: 997667846679041836, guid: ea5ec437639910445b3353b629ebda13, type: 3}

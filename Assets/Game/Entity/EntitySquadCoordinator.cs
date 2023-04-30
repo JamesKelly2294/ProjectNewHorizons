@@ -185,12 +185,15 @@ public class EntitySquadCoordinator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SpawnTimer < 0)
+        if (SpawningEnabled)
         {
-            SpawnTimer += SpawnInterval;
-            SpawnNextSquad();
-        }
+            if (SpawnTimer < 0)
+            {
+                SpawnTimer += SpawnInterval;
+                SpawnNextSquad();
+            }
 
-        SpawnTimer -= Time.deltaTime;
+            SpawnTimer -= Time.deltaTime;
+        }
     }
 }

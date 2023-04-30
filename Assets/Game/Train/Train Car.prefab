@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd0cc64ef604192911d9e984982754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 100
+  CurrentHealth: 200
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -1929,7 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd0cc64ef604192911d9e984982754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 100
+  CurrentHealth: 200
   OnDamage:
     m_PersistentCalls:
       m_Calls: []

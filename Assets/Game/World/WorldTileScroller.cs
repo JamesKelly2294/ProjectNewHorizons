@@ -6,6 +6,7 @@ public class WorldTileScroller : MonoBehaviour
 {
 
     public List<WorldTile> CenterTiles = new List<WorldTile>();
+    public List<WorldTile> InnerTiles = new List<WorldTile>();
     public List<WorldTile> OuterTiles = new List<WorldTile>();
 
     private List<WorldTile> activeTiles = new List<WorldTile>();
@@ -61,13 +62,27 @@ public class WorldTileScroller : MonoBehaviour
         {
             float horizontalOffset = (i * TileSpacing + TileSpacing / 2.0f) - (totalHorizontalOffset / 2.0f);
 
+            var isCenterColumn = false;
+            if (NumColumns % 2 == 0)
+            {
+                isCenterColumn = i == NumColumns / 2 || i == NumColumns / 2 - 1;
+            }
+            else
+            {
+                isCenterColumn = i == NumColumns / 2;
+            }
+
             if (i == 0 || i == NumColumns - 1)
             {
                 SpawnRandomTile(OuterTiles, horizontalOffset, verticalOffset);
             }
-            else
+            else if (isCenterColumn)
             {
                 SpawnRandomTile(CenterTiles, horizontalOffset, verticalOffset);
+            }
+            else
+            {
+                SpawnRandomTile(InnerTiles, horizontalOffset, verticalOffset);
             }
         }
 

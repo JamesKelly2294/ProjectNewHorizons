@@ -11,13 +11,15 @@ public class Enemy : MonoBehaviour
     public GameObject target;
 
     private Train _theTrain;
+    private float _randomSeed;
 
     // Start is called before the first frame update
     void Start()
     {
         // at the moment, the enemies only attack the train
         _theTrain = FindFirstObjectByType<Train>();
-        
+        _randomSeed = Random.Range(0, 1.0f);
+
         guns = GetComponentsInChildren<Gun>().ToList();
     }
 
@@ -62,13 +64,16 @@ public class Enemy : MonoBehaviour
         var side = transform.position.x < _theTrain.transform.position.x ? TrainSide.Left : TrainSide.Right;
         
         var trainCars = _theTrain.TrainCars.Where(e => !e.IsSideDestroyed(side)).ToList();
-        if (trainCars.Count == 0)
-        {
-            trainCars = _theTrain.TrainCars.Where(e => e.IsSideDestroyed(side)).ToList();
-        }
 
         var closestCar = ClosestTrainCar(trainCars);
-        target = closestCar.gameObject;
+        if (closestCar != null)
+        {
+            target = closestCar.gameObject;
+        }
+        else
+        {
+            target = null;
+        }
     }
 
     void AimAtTarget()
@@ -77,8 +82,15 @@ public class Enemy : MonoBehaviour
 
         foreach (var gun in guns)
         {
-            gun.RequestedPosition = target.transform.position;
-            gun.ShouldFireWhenReady = true;
+            gun.RequestedPosition = target.transform.position + Vector3.forward * Mathf.Sin(2.0f * Time.time + _randomSeed) * 1.5f;
+
+            var gunPosInViewportSpace = Camera.main.WorldToViewportPoint(gun.transform.position);
+            var shouldFireWhenReady = gunPosInViewportSpace.x > 0 &&
+                gunPosInViewportSpace.x < 1.0 &&
+                gunPosInViewportSpace.y > 0 &&
+                gunPosInViewportSpace.y < 1.0;
+
+            gun.ShouldFireWhenReady = shouldFireWhenReady;
         }
     }
 }
