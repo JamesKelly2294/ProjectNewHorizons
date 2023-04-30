@@ -106,4 +106,22 @@ public class PackageGunBottomBar : MonoBehaviour
             default:                            return Color.HSVToRGB(1.0f, 1, 1);
         }
     }
+
+    public static int GetPackageTypeMonitaryValue(PackageType packageType)
+    {
+        switch (packageType)
+        {
+            case PackageType.automaton:         return   100_000;
+            case PackageType.camera:            return    10_000;
+            case PackageType.gears:             return        50;
+            case PackageType.goggles:           return        50;
+            case PackageType.keyboard:          return       100;
+            case PackageType.masqueradeMask:    return       500;
+            case PackageType.musicBox:          return       200;
+            case PackageType.necklace:          return     4_000;
+            case PackageType.pocketWatch:       return     2_000;
+            case PackageType.steamPipe:         return       100;
+            default:                            return         0;
+        }
+    }
 }

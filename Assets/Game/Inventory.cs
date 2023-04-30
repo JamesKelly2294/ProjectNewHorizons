@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
     {
         PackageInventory[PackageType.automaton] = 1;
         PackageInventory[PackageType.camera] = 2;
-        PackageInventory[PackageType.goggles] = 1;
+        PackageInventory[PackageType.goggles] = 12;
 
     }
 

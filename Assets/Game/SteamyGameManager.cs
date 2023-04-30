@@ -71,10 +71,11 @@ public class SteamyGameManager : MonoBehaviour
         }
     }
 
-    public void PackageDelivered()
+    public void PackageDelivered(PubSubListenerEvent e)
     {
         DeliveredBoxCount += 1;
         AudioManager.Instance.Play("Package/Delivered");
+        Money += PackageGunBottomBar.GetPackageTypeMonitaryValue(e.sender.GetComponent<Package>().PackageType);
     }
 
     public void PackageFailedToBeDelivered()
