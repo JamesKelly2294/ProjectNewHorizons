@@ -16,6 +16,7 @@ public class ObjectPooler : MonoBehaviour
 
     public Dictionary<string, List<GameObject>> pooledObjects;
     public List<ObjectPoolItem> itemsToPool;
+    public Dictionary<int, Coroutine> coroutines;
     private Dictionary<string, ObjectPoolItem> itemsToPoolLookup;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class ObjectPooler : MonoBehaviour
     {
         pooledObjects = new Dictionary<string, List<GameObject>>();
         itemsToPoolLookup = new Dictionary<string, ObjectPoolItem>();
+        coroutines = new Dictionary<int, Coroutine>();
         foreach (ObjectPoolItem item in itemsToPool)
         {
             itemsToPoolLookup[item.objectToPool.name] = item;
@@ -60,7 +62,14 @@ public class ObjectPooler : MonoBehaviour
         {
             if (!pooledObjectsForName[i].activeInHierarchy)
             {
-                return pooledObjectsForName[i];
+                var go = pooledObjectsForName[i];
+                if (coroutines.ContainsKey(go.GetInstanceID()))
+                {
+                    var existingCoroutine = coroutines[go.GetInstanceID()];
+                    StopCoroutine(existingCoroutine);
+                }
+
+                return go;
             }
         }
 
@@ -85,6 +94,13 @@ public class ObjectPooler : MonoBehaviour
 
     public void ReturnObjectToPoolAfterDelay(GameObject go, float time)
     {
-        StartCoroutine(ReturnObjectToPoolAfterDelayHelper(go, time));
+        if (coroutines.ContainsKey(go.GetInstanceID()))
+        {
+            var existingCoroutine = coroutines[go.GetInstanceID()];
+            StopCoroutine(existingCoroutine);
+        }
+
+        var e = StartCoroutine(ReturnObjectToPoolAfterDelayHelper(go, time));
+        coroutines[go.GetInstanceID()] = e;
     }
 }
