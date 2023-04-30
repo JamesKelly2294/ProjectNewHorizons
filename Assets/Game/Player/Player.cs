@@ -4,55 +4,113 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Range(0.0f, 100.0f)]
-    public float MaxSpeed = 10.0f;
-
-    //[Range(0.0f, 100.0f)]
-    //public float Acceleration = 1.0f;
-
-    //[Range(0.0f, 100.0f)]
-    //public float DecelerationMultiplier = 0.1f;
-
-    Rigidbody _rb;
-
     public bool IsInteracting = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 10f;
+    public GameObject inner;
+    Plane plane = new Plane(Vector3.up, 0);
+
+    public AnimationCurve walkVertical;
+    public AnimationCurve walkWobble;
+    public float walkVerticalTime, walkVerticalTotalTime;
+    public float footstepTime;
+    public bool alive = true;
+
+    void PlayFootstepAudio()
     {
-        _rb = GetComponent<Rigidbody>();
+        AudioManager.Instance.Play("SFX/PlayerWalk",
+            pitchMin: 0.9f, pitchMax: 1.1f,
+            volumeMin: 0.5f, volumeMax: 0.5f,
+            position: transform.position,
+            minDistance: 10, maxDistance: 20);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0) { return; }
 
-        if (!IsInteracting) 
+        Vector3 camRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+        Vector3 camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
+
+        Vector3 movement = Vector3.zero;
+        if (Input.GetKey("w"))
         {
-            Vector3 movementDir = Vector3.zero;
-
-            Vector3 camRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
-            Vector3 camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
-
-            if (Input.GetKey(KeyCode.W))
-            {
-                movementDir += camForward;
-            } else if (Input.GetKey(KeyCode.S))
-            {
-                movementDir -= camForward;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                movementDir -= camRight;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                movementDir += camRight;
-            }
-
-            _rb.velocity = movementDir.normalized * MaxSpeed;
+            movement += camForward;
         }
+
+        if (Input.GetKey("s"))
+        {
+            movement += -camForward;
+        }
+
+        if (Input.GetKey("a"))
+        {
+            movement += -camRight;
+        }
+
+        if (Input.GetKey("d"))
+        {
+            movement += camRight;
+        }
+
+        movement = movement.normalized;
+        transform.position += movement * Time.deltaTime * speed;
+
+        // Animate walk
+        if (movement != Vector3.zero)
+        {
+            walkVerticalTime += Time.deltaTime;
+            if (walkVerticalTime > walkVerticalTotalTime)
+            {
+                walkVerticalTime -= walkVerticalTotalTime;
+            }
+
+            footstepTime += Time.deltaTime;
+            if (footstepTime > (walkVerticalTotalTime / 2.0f) - (walkVerticalTotalTime / 4.0f))
+            {
+                PlayFootstepAudio();
+                footstepTime = -walkVerticalTotalTime / 4.0f;
+            }
+        }
+        else
+        {
+            // If we are beyond half way, just continue
+            if (walkVerticalTime > walkVerticalTotalTime / 2 && walkVerticalTime < walkVerticalTotalTime)
+            {
+                walkVerticalTime += Time.deltaTime;
+                walkVerticalTime = Mathf.Min(walkVerticalTotalTime, walkVerticalTime);
+
+            }
+            else if (walkVerticalTime < walkVerticalTotalTime / 2 && walkVerticalTime > 0)
+            {
+                walkVerticalTime -= Time.deltaTime;
+                walkVerticalTime = Mathf.Max(0, walkVerticalTime);
+            }
+        }
+        float innerVerticalOffet = walkVertical.Evaluate(walkVerticalTime / walkVerticalTotalTime);
+        inner.transform.localPosition = new Vector3(inner.transform.localPosition.x, innerVerticalOffet, inner.transform.localPosition.z);
+
+        float distance;
+        Vector3 cursorLoc = Vector3.zero;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (plane.Raycast(ray, out distance))
+        {
+            cursorLoc = ray.GetPoint(distance);
+        }
+
+        if (currentInteractable != null && currentInteractable.IsInteracting)
+        {
+            //inner.transform.LookAt(currentInteractable.transform);
+        }
+        else
+        {
+            cursorLoc = new Vector3(cursorLoc.x, inner.transform.position.y, cursorLoc.z);
+            inner.transform.LookAt(cursorLoc);
+        }
+
+        Vector3 eulerRotation = inner.transform.rotation.eulerAngles;
+        inner.transform.rotation = Quaternion.Euler(new Vector3(eulerRotation.x, eulerRotation.y, walkWobble.Evaluate(walkVerticalTime / walkVerticalTotalTime) * 90));
 
         CheckForInteractable();
     }

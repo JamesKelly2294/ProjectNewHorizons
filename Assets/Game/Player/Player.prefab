@@ -48,6 +48,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSpeed: 10
+  IsInteracting: 0
+  speed: 10
+  inner: {fileID: 5004074967126912837}
+  walkVertical:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  walkWobble:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  walkVerticalTime: 0
+  walkVerticalTotalTime: 0
+  footstepTime: 0
+  alive: 1
 --- !u!54 &1961980168
 Rigidbody:
   m_ObjectHideFlags: 0

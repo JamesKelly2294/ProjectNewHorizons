@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ddb3a680c72d149bf0c8db0b044d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 5004074966332882523, guid: 2b31f73e65d00bc41a4a943849553505, type: 3}
+  PlayerPrefab: {fileID: 4424910263592909912, guid: a4450e7c3759655488962af9a929847e, type: 3}
   StartingTrainCarPrefabs:
   - {fileID: 1052283326658444984, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
   - {fileID: 1052283326658444984, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
