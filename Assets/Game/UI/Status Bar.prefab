@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 2843068449544910251}
   - component: {fileID: 2843068449544910250}
   - component: {fileID: 1375620403267060722}
+  - component: {fileID: 6758787032348844214}
   m_Layer: 5
   m_Name: Status Bar
   m_TagString: Untagged
@@ -837,6 +838,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &6758787032348844214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2843068449544910255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9098c10bc1af46659481bf3be8fc807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProgressBar: {fileID: 5209273825452522954}
+  OriginCityNameText: {fileID: 1684750222650616025}
+  DestinationCityNameText: {fileID: 6602018682110262822}
 --- !u!1 &2900888428719978165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,6 +2553,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 721442526359279328, guid: 8e96f6cf5fe8a43cfb43bd7705823a27, type: 3}
   m_PrefabInstance: {fileID: 4776096912901894361}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5209273825452522954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 721442526762700051, guid: 8e96f6cf5fe8a43cfb43bd7705823a27, type: 3}
+  m_PrefabInstance: {fileID: 4776096912901894361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d8fbe9451a2745faa2197fee4e67c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5209273825452522959 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 721442526762700054, guid: 8e96f6cf5fe8a43cfb43bd7705823a27, type: 3}
