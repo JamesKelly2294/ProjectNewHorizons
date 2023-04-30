@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 763009293054289581, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 763009293054289581, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 763009293054289581, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -109,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4823296563113953105, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
       propertyPath: m_Color.a
-      value: 0.49803922
+      value: 0.8235294
       objectReference: {fileID: 0}
     - target: {fileID: 4823296563113953105, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
       propertyPath: m_Color.b
@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7406178799737700782, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
       propertyPath: m_Name
-      value: Use Package Gun Sign
+      value: Use Package Gun Sign Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16cc02728e684e0ca574bcddf25bca5, type: 3}
