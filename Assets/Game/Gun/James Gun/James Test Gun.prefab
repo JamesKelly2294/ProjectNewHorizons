@@ -5185,11 +5185,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6019058097268572847, guid: 6b36fbb4c6a175a4caa3eca2e0547d7e, type: 3}
   GunOperator: {fileID: 0}
   GunOperatorPosition: {fileID: 8814002088404825275}
-  PackageType: 0
   RequestedPosition: {x: 0, y: 0, z: 0}
   ShouldFireWhenReady: 0
-  minRotation: -50
-  maxRotation: 50
+  minRotation: -75
+  maxRotation: 75
   RotationSpeed: 2
   FireTimeCurve:
     serializedVersion: 2
@@ -5502,6 +5501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efff978a5aa2b473a8a06815a69ba94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PackageGun: 0
 --- !u!114 &4856016322347222408
 MonoBehaviour:
   m_ObjectHideFlags: 0

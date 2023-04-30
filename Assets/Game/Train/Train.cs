@@ -46,6 +46,16 @@ public class Train : MonoBehaviour
         }
     }
 
+    public Vector3 ForwardExtent()
+    {
+        return TrainCars[0].forwardLink.transform.position;
+    }
+
+    public Vector3 AftExtent()
+    {
+        return TrainCars[TrainCars.Count - 1].aftLink.transform.position;
+    }
+
     // Update is called once per frame
     void Update()
     {

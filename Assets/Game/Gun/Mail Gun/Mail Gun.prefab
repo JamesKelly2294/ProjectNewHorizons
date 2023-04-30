@@ -5223,8 +5223,8 @@ MonoBehaviour:
   GunOperatorPosition: {fileID: 8814002088404825275}
   RequestedPosition: {x: 0, y: 0, z: 0}
   ShouldFireWhenReady: 0
-  minRotation: -90
-  maxRotation: 90
+  minRotation: -80
+  maxRotation: 80
   RotationSpeed: 2
   FireTimeCurve:
     serializedVersion: 2

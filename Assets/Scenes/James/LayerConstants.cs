@@ -10,4 +10,5 @@ public static class LayerConstants
     public const int Water = 4;
     public const int UI = 5;
     public const int PostProcessing = 6;
+    public const int TheEternalPlane = 7;
 }

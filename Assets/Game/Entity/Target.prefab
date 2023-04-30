@@ -98,3 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeScale: 0.71
   DistanceScale: 2
+  Visualize: 1

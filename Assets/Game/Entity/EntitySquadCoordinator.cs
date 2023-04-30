@@ -2,32 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TrainSide
+{
+    Left = 0,
+    Right = 1,
+}
+
 public class EntitySquadCoordinator : MonoBehaviour
 {
-    [HideInInspector]
-    public List<EntitySquadSpawnConfig> SpawnConfigs = new List<EntitySquadSpawnConfig>();
-
+    [Header("Configuration")]
     public GameObject EnemySquadPrefab;
     public GameObject MailLoverSquadPrefab;
     public GameObject TargetPrefab;
 
+    [Header("Spawning")]
+    [Range(0, 30.0f)]
+    public float EnemyTargetMinDistanceFromTrain = 5.0f;
+    public bool SpawningEnabled = true;
+    [Range(0, 60.0f)]
+    public float SpawnInterval = 5.0f;
+    public float SpawnTimer;
+
+    private Train _theTrain;
+
     // Start is called before the first frame update
     void Start()
     {
-        var spawnConfigsGO = transform.Find("Spawns");
-        
-        if (spawnConfigsGO != null)
-        {
-            for (var i = 0; i < spawnConfigsGO.transform.childCount; i++)
-            {
-                var child = spawnConfigsGO.transform.GetChild(i);
-                var spawnConfig = child.GetComponent<EntitySquadSpawnConfig>();
-                if (spawnConfig != null)
-                {
-                    SpawnConfigs.Add(spawnConfig);
-                }
-            }
-        }
+        _theTrain = FindAnyObjectByType<Train>();
+
+        SpawnTimer = SpawnInterval;
     }
 
     public void SpawnEnemySquad()
@@ -44,11 +47,10 @@ public class EntitySquadCoordinator : MonoBehaviour
     {
         if (!Application.isPlaying) { return; }
 
-        var spawnConfig = SelectEntitySquadSpawnConfig();
-        if (spawnConfig == null) { Debug.LogError("No Spawn Config Found."); return; }
-
-        var spawnPosition = SelectSpawnPosition(spawnConfig);
-        var targetPosition = SelectTargetPosition(spawnConfig);
+        TrainSide side = TrainSide.Right;
+        if (Random.Range(0, 1.0f) < 0.5f) { side = TrainSide.Left; }
+        var spawnPosition = SelectSpawnPosition(side);
+        var targetPosition = SelectTargetPosition(side);
 
         var EntitySquadGO = Instantiate(squadPrefab);
         EntitySquadGO.transform.position = spawnPosition;
@@ -60,57 +62,88 @@ public class EntitySquadCoordinator : MonoBehaviour
         EntitySquad.SetTarget(targetGO.transform);
     }
 
-    public EntitySquadSpawnConfig SelectEntitySquadSpawnConfig()
+    public Vector3 SelectSpawnPosition(TrainSide side)
     {
-        if (SpawnConfigs.Count == 0) { Debug.LogError("No Spawn Config Found."); return null; }
-        return SpawnConfigs[Random.Range(0, SpawnConfigs.Count)];
+        return new Vector3(0, 0, 100.0f);
     }
 
-    public Vector3 SelectSpawnPosition(EntitySquadSpawnConfig spawnConfig)
+    private Vector3 CastToTheEternalPlane(Ray ray)
     {
-        if (spawnConfig.SpawnVolumes.Count == 0) { Debug.LogError("No Spawn Volumes Found."); return Vector3.zero; }
+        int layerMask = 1 << LayerConstants.TheEternalPlane;
 
-        var totalVolume = spawnConfig.TotalSpawnVolume;
-        var randomWeight = Random.Range(0, totalVolume);
-
-        Bounds selectedBounds = spawnConfig.SpawnVolumes[0];
-        foreach(var volume in spawnConfig.SpawnVolumes)
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
-            totalVolume -= volume.GetVolume();
-            if (randomWeight >= totalVolume)
-            {
-                selectedBounds = volume;
-                break;
-            }
+            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.yellow, 60.0f);
+            return hit.point;
         }
-        
-        return new Vector3(Random.Range(selectedBounds.min.x, selectedBounds.max.x), 1.0f, Random.Range(selectedBounds.min.z, selectedBounds.max.z));
+        else
+        {
+            Debug.DrawRay(ray.origin, ray.direction * 1000, Color.white, 60.0f);
+            return Vector3.zero;
+        }
     }
 
-    public Vector3 SelectTargetPosition(EntitySquadSpawnConfig spawnConfig)
+    public Vector3 SelectTargetPosition(TrainSide side)
     {
-        if (spawnConfig.TargetVolumes.Count == 0) { Debug.LogError("No Target Volumes Found."); return Vector3.zero; }
-
-        var totalVolume = spawnConfig.TotalTargetVolume;
-        var randomWeight = Random.Range(0, totalVolume);
-
-        Bounds selectedBounds = spawnConfig.TargetVolumes[0];
-        foreach (var volume in spawnConfig.TargetVolumes)
+        Vector3 targetPosition = Vector3.zero;
+        bool selectedValidSpawnPosition = false;
+        int iterationCount = 0;
+        const int maxIterationCount = 20;
+        do
         {
-            totalVolume -= volume.GetVolume();
-            if (randomWeight >= totalVolume)
-            {
-                selectedBounds = volume;
-                break;
-            }
-        }
+            iterationCount += 1;
 
-        return new Vector3(Random.Range(selectedBounds.min.x, selectedBounds.max.x), 1.0f, Random.Range(selectedBounds.min.z, selectedBounds.max.z));
+            // Z Val
+            var forwardExtent = _theTrain.ForwardExtent();
+            var aftExtent = _theTrain.AftExtent();
+            var longitudinalRange = Vector3.Distance(forwardExtent, aftExtent);
+            var zVal = aftExtent.z + Random.Range(0, longitudinalRange);
+
+            // X Val
+            var viewportPoint = Camera.main.WorldToViewportPoint(forwardExtent);
+            Ray horizontalExtentRay = Camera.main.ViewportPointToRay(new Vector3(side == TrainSide.Left ? 0 : 1, viewportPoint.y, 0));
+            var hitPoint = CastToTheEternalPlane(horizontalExtentRay);
+            var maxLateralRange = Vector3.Distance(forwardExtent, hitPoint);
+            var trainBuffer = EnemyTargetMinDistanceFromTrain;
+            var sign = side == TrainSide.Left ? -1 : 1;
+            var xVal = forwardExtent.x + sign * Random.Range(trainBuffer, maxLateralRange);
+
+            targetPosition = new Vector3(xVal, forwardExtent.y, zVal);
+
+            var targetPositionInViewportSpace = Camera.main.WorldToViewportPoint(targetPosition);
+            if (targetPositionInViewportSpace.x > 0.05 
+                && targetPositionInViewportSpace.x < 0.95 
+                && targetPositionInViewportSpace.y > 0.05 
+                && targetPositionInViewportSpace.y < 0.95)
+            {
+                selectedValidSpawnPosition = true;
+            }
+        } while (!selectedValidSpawnPosition && iterationCount < maxIterationCount);
+
+        return targetPosition;
+    }
+
+    public void SpawnNextSquad()
+    {
+        if (Random.Range(0, 1.0f) < 0.2f)
+        {
+            SpawnMailLoverSquad();
+        }
+        else
+        {
+            SpawnEnemySquad();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (SpawnTimer < 0)
+        {
+            SpawnTimer += SpawnInterval;
+            SpawnNextSquad();
+        }
+
+        SpawnTimer -= Time.deltaTime;
     }
 }
