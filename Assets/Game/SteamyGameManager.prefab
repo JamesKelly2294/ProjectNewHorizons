@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1207626ff1d2452d8abb552dd5cdc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelProgress: 0.5
+  LevelProgress: 0
   LevelTime: 60
   OriginCity: 1
   DestinationCity: 2
-  LifetimeDeliveredPackages: 43
-  Money: 32443
+  LifetimeDeliveredPackages: 0
+  Money: 0
   DeliveredBoxCount: 0
   FailedBoxCount: 0
 --- !u!114 &4202893863664604972

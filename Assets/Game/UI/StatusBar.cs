@@ -16,7 +16,7 @@ public class StatusBar : MonoBehaviour
     public TextMeshProUGUI DeliveredBoxCountText;
     public TextMeshProUGUI FailedBoxCountText;
     public TextMeshProUGUI MoneyText;
-    public TextMeshProUGUI LifetimePackageDeliveryText;
+    public TextMeshProUGUI VictoryPointsText;
 
     void Awake()
     {

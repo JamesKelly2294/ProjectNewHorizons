@@ -12,8 +12,8 @@ public class SteamyGameManager : MonoBehaviour
     public City OriginCity = City.steamerly;
     public City DestinationCity = City.geartonsteamshireville;
 
-    public int LifetimeDeliveredPackages = 43;
-    public int Money = 32443;
+    public int VictoryPoints = 0;
+    public int Money = 0;
 
     public int DeliveredBoxCount = 0;
     public int FailedBoxCount = 0;
@@ -47,7 +47,7 @@ public class SteamyGameManager : MonoBehaviour
         if (sb != null) {
 
             // City progress bar
-            sb.ProgressBar.progress = LevelProgress;
+            sb.ProgressBar.progress = Mathf.Max(Mathf.Min(LevelProgress, 1f), 0f);
             sb.OriginCityNameText.text = SteamyGameManager.CityName(OriginCity);
             sb.DestinationCityNameText.text = SteamyGameManager.CityName(DestinationCity);
 
@@ -56,7 +56,7 @@ public class SteamyGameManager : MonoBehaviour
             sb.DeliveredBoxCountText.text = DeliveredBoxCount.ToString("N0");
             sb.FailedBoxCountText.text = FailedBoxCount.ToString("N0");
             sb.MoneyText.text = Money.ToString("N0");
-            sb.LifetimePackageDeliveryText.text = LifetimeDeliveredPackages.ToString("N0");
+            sb.VictoryPointsText.text = VictoryPoints.ToString("N0");
         }
     }
 
@@ -74,6 +74,7 @@ public class SteamyGameManager : MonoBehaviour
     public void PackageDelivered(PubSubListenerEvent e)
     {
         DeliveredBoxCount += 1;
+        VictoryPoints += 1;
         AudioManager.Instance.Play("Package/Delivered");
         Money += PackageGunBottomBar.GetPackageTypeMonitaryValue(e.sender.GetComponent<Package>().PackageType);
     }
