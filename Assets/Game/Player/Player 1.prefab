@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3287968322071021211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8654365818520089355}
   - component: {fileID: 8654365818520089348}
   - component: {fileID: 8496393536119179326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -399,6 +399,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5a65036ca1b814de8a73b3f3a8478bc7, type: 3}
       propertyPath: m_Name
       value: Player1.vox
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a65036ca1b814de8a73b3f3a8478bc7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 5a65036ca1b814de8a73b3f3a8478bc7, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a65036ca1b814de8a73b3f3a8478bc7, type: 3}
