@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     void PlayFootstepAudio()
     {
         AudioManager.Instance.Play("SFX/PlayerWalk",
-            pitchMin: 0.9f, pitchMax: 1.1f,
-            volumeMin: 0.5f, volumeMax: 0.5f,
+            pitchMin: 0.65f, pitchMax: 0.85f,
+            volumeMin: 0.4f, volumeMax: 0.4f,
             position: transform.position,
             minDistance: 10, maxDistance: 20);
     }
@@ -30,28 +30,31 @@ public class Player : MonoBehaviour
     {
         if (Time.timeScale == 0) { return; }
 
-        Vector3 camRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
-        Vector3 camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
-
         Vector3 movement = Vector3.zero;
-        if (Input.GetKey("w"))
+        if (!IsInteracting)
         {
-            movement += camForward;
-        }
+            Vector3 camRight = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up).normalized;
+            Vector3 camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
 
-        if (Input.GetKey("s"))
-        {
-            movement += -camForward;
-        }
+            if (Input.GetKey("w"))
+            {
+                movement += camForward;
+            }
 
-        if (Input.GetKey("a"))
-        {
-            movement += -camRight;
-        }
+            if (Input.GetKey("s"))
+            {
+                movement += -camForward;
+            }
 
-        if (Input.GetKey("d"))
-        {
-            movement += camRight;
+            if (Input.GetKey("a"))
+            {
+                movement += -camRight;
+            }
+
+            if (Input.GetKey("d"))
+            {
+                movement += camRight;
+            }
         }
 
         movement = movement.normalized;
