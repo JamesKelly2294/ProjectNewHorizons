@@ -30,14 +30,14 @@ public class ObjectPooler : MonoBehaviour
         itemsToPoolLookup = new Dictionary<string, ObjectPoolItem>();
         foreach (ObjectPoolItem item in itemsToPool)
         {
-            itemsToPoolLookup[item.objectToPool.tag] = item;
-            pooledObjects[item.objectToPool.tag] = new List<GameObject>();
+            itemsToPoolLookup[item.objectToPool.name] = item;
+            pooledObjects[item.objectToPool.name] = new List<GameObject>();
             for (int i = 0; i < item.amountToPool; i++)
             {
                 var obj = Instantiate(item.objectToPool);
                 obj.transform.parent = transform;
                 obj.SetActive(false);
-                pooledObjects[item.objectToPool.tag].Add(obj);
+                pooledObjects[item.objectToPool.name].Add(obj);
             }
         }
 
@@ -49,18 +49,18 @@ public class ObjectPooler : MonoBehaviour
         
     }
 
-    public GameObject GetPooledObject(string tag)
+    public GameObject GetPooledObject(string name)
     {
-        if(!itemsToPoolLookup.ContainsKey(tag)) { return null; }
+        if(!itemsToPoolLookup.ContainsKey(name)) { return null; }
 
-        var pooledObjectsForTag = pooledObjects[tag];
-        var item = itemsToPoolLookup[tag];
+        var pooledObjectsForName = pooledObjects[name];
+        var item = itemsToPoolLookup[name];
 
-        for (int i = 0; i < pooledObjectsForTag.Count; i++)
+        for (int i = 0; i < pooledObjectsForName.Count; i++)
         {
-            if (!pooledObjectsForTag[i].activeInHierarchy)
+            if (!pooledObjectsForName[i].activeInHierarchy)
             {
-                return pooledObjectsForTag[i];
+                return pooledObjectsForName[i];
             }
         }
 
@@ -69,7 +69,7 @@ public class ObjectPooler : MonoBehaviour
             var obj = Instantiate(item.objectToPool);
             obj.transform.parent = transform;
             obj.SetActive(false);
-            pooledObjectsForTag.Add(obj);
+            pooledObjectsForName.Add(obj);
             return obj;
         } else
         {

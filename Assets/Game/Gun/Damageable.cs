@@ -28,11 +28,9 @@ public class Damageable : MonoBehaviour
     {
         CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         if (CurrentHealth <= 0) {
-            Debug.Log("Dead!");
             OnDeath.Invoke();
             enabled = false;
         } else {
-            Debug.Log("Took " + amount + " of damage. Now at " + CurrentHealth);
             OnDamage.Invoke();
         }
     }
