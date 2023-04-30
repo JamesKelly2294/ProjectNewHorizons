@@ -52,5 +52,5 @@ MonoBehaviour:
   - {fileID: 5903986620630616172, guid: aeb35d333171a1d4c813de5fc4453de0, type: 3}
   Speed: 200
   TileSpacing: 100
-  NumColumns: 5
-  NumRows: 5
+  NumColumns: 8
+  NumRows: 8
