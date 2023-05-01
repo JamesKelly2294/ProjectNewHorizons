@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbb0209b2a089d845b5b3189c0bd638f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RepairSidePrefab: {fileID: 8431577666875947151, guid: f8912b6738cecca4d859c6912852c610, type: 3}
+  RepairSidePrefab: {fileID: 4696196272478383535, guid: 54bf36e000cc23140b4d4c7fe67e5891, type: 3}
   forwardLink: {fileID: 3557552178071025872}
   aftLink: {fileID: 6868542029219635068}
   leftSideSlot: {fileID: 3405929033049474899}

@@ -86,7 +86,20 @@ public class TrainCar : MonoBehaviour
         Destroy(leftSideUpgradeGO);
         leftSideUpgradeGO = null;
 
-        SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: true);
+        var spawnedUpgrade = SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: true);
+
+        var repairGO = Instantiate(RepairSidePrefab);
+        repairGO.transform.parent = transform;
+        repairGO.transform.position = spawnedUpgrade.transform.position;
+        var repairInteractable = repairGO.GetComponent<RepairInteractable>();
+        repairInteractable.RepairCompleted.AddListener(delegate
+        {
+            leftSideDamageable.CurrentHealth = leftSideDamageable.MaxHealth;
+            leftSideDamageable.enabled = true;
+            SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: false);
+
+            Destroy(repairInteractable.gameObject);
+        });
     }
 
     public void RightSideDestroyed()
@@ -95,7 +108,20 @@ public class TrainCar : MonoBehaviour
         Destroy(rightSideUpgradeGO);
         rightSideUpgradeGO = null;
 
-        SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
+        var spawnedUpgrade = SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
+
+        var repairGO = Instantiate(RepairSidePrefab);
+        repairGO.transform.parent = transform;
+        repairGO.transform.position = spawnedUpgrade.transform.position;
+        var repairInteractable = repairGO.GetComponent<RepairInteractable>();
+        repairInteractable.RepairCompleted.AddListener(delegate
+        {
+            rightSidDamageable.CurrentHealth = rightSidDamageable.MaxHealth;
+            rightSidDamageable.enabled = true;
+            SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
+
+            Destroy(repairInteractable.gameObject);
+        });
     }
 
     public bool IsSideDestroyed(TrainSide side)

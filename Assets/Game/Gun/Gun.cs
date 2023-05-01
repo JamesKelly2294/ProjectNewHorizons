@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RequestedPosition = transform.position + transform.forward * 100.0f;
+        RequestedPosition = transform.position + transform.forward;
     }
 
     // Update is called once per frame
@@ -50,21 +50,21 @@ public class Gun : MonoBehaviour
         // Limit gun to point within range
         Vector3 angles = Quaternion.LookRotation(RequestedPosition - inner.transform.position, Vector3.up).eulerAngles;
         float rotation = angles.y - gameObject.transform.rotation.eulerAngles.y;
-        //if (rotation > 180) {
-        //    rotation -= 360;
-        //}
+        if (rotation > 180) {
+            rotation -= 360;
+        }
 
-        //if (LimitRotation)
-        //{
-        //    if (rotation > maxRotation)
-        //    {
-        //        rotation = maxRotation;
-        //    }
-        //    else if (rotation < minRotation)
-        //    {
-        //        rotation = minRotation;
-        //    }
-        //}
+        if (LimitRotation)
+        {
+            if (rotation > maxRotation)
+            {
+                rotation = maxRotation;
+            }
+            else if (rotation < minRotation)
+            {
+                rotation = minRotation;
+            }
+        }
 
         var step = RotationSpeed * 360 * Time.deltaTime;
         Quaternion targetRotation = Quaternion.Euler(angles.x, rotation + gameObject.transform.rotation.eulerAngles.y, angles.z);
