@@ -64,7 +64,7 @@ public class PackageGunBottomBar : MonoBehaviour
             listItem.icon.color = itemColor;
             listItem.icon.sprite = PackageGunBottomBar.GetPackageTypeSprite(item.Key);
             listItem.selectionOutline.color = itemColor;
-            listItem.backgroundFill.color = new Color(itemColor.r / 3, itemColor.g / 3, itemColor.b / 3, 0.9f);
+            listItem.backgroundFill.color = new Color(itemColor.r / 4, itemColor.g / 4, itemColor.b / 4, 0.9f);
 
             if (current == Selection) {
                 SelectedItemText.text = PackageGunBottomBar.GetPackageTypeString(item.Key);

@@ -60,7 +60,7 @@ public class PackageRecipientDesireBox : MonoBehaviour
         Color itemColor = PackageGunBottomBar.GetPackageTypePrimaryColor(PackageType);
         badgeText.text = Count.ToString("N0");
         badge.SetActive(Count > 1);
-        backgroundFill.color = new Color(itemColor.r / 3, itemColor.g / 3, itemColor.b / 3, 0.9f);
+        backgroundFill.color = new Color(itemColor.r / 4, itemColor.g / 4, itemColor.b / 4, 0.9f);
         forgroundImage.color = itemColor;
         forgroundImage.sprite = PackageGunBottomBar.GetPackageTypeSprite(PackageType);
 

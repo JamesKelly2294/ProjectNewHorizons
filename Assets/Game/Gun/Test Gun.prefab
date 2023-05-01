@@ -5172,6 +5172,7 @@ GameObject:
   - component: {fileID: 4492941698584974179}
   - component: {fileID: 2599724221574263673}
   - component: {fileID: 590458577386253038}
+  - component: {fileID: 4856016322347222408}
   m_Layer: 0
   m_Name: Test Gun
   m_TagString: Untagged
@@ -5216,6 +5217,7 @@ MonoBehaviour:
   GunOperatorPosition: {fileID: 8814002088404825275}
   RequestedPosition: {x: 0, y: 0, z: 0}
   ShouldFireWhenReady: 0
+  LimitRotation: 1
   minRotation: -90
   maxRotation: 90
   RotationSpeed: 2
@@ -5528,6 +5530,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efff978a5aa2b473a8a06815a69ba94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PackageGun: 0
+--- !u!114 &4856016322347222408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3175926589303347065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f292d19e8ac687f4796ed88f9f22cd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8032363344004636729
