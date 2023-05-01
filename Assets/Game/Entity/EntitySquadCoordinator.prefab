@@ -47,7 +47,7 @@ MonoBehaviour:
   EnemySquadPrefab: {fileID: 3279073939358870251, guid: 8faf6956d57ed8d418c357b86fca91b5, type: 3}
   MailLoverSquadPrefab: {fileID: 3279073939358870251, guid: 011dbcee935d7134daa4909ec097e7c9, type: 3}
   TargetPrefab: {fileID: 702787419332291586, guid: 0a352689587426a419382012791a5092, type: 3}
-  EnemyTargetMinDistanceFromTrain: 5
+  EnemyTargetMinDistanceFromTrain: 9
   SpawningEnabled: 1
-  SpawnInterval: 60
+  SpawnInterval: 5
   SpawnTimer: 0

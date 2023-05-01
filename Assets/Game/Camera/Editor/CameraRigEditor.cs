@@ -21,5 +21,15 @@ public class CameraRigEditor : Editor
         {
             obj.SetToGameplayAngle();
         }
+
+        if (GUILayout.Button("Fade to Black"))
+        {
+            obj.FadeToBlack();
+        }
+
+        if (GUILayout.Button("Fade from Black"))
+        {
+            obj.FadeFromBlack();
+        }
     }
 }
