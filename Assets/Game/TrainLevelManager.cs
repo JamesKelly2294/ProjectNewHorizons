@@ -126,12 +126,14 @@ public class TrainLevelManager : MonoBehaviour
             _missionOutroGUI.HeaderLabel.text = "J.B. Gearsworth III, Captain";
             _missionOutroGUI.ShipStatusLabel.text = "Hull integrity maintained";
             _missionOutroGUI.PressToContinueLabel.text = "Press Space For Your Next Delivery";
+            AudioManager.Instance.Play("Win");
         }
         else if (lostLevel)
         {
             _missionOutroGUI.HeaderLabel.text = "Brass & Copper Deliveries, Co.";
             _missionOutroGUI.ShipStatusLabel.text = "Hull integrity lost. Captain MIA, assumed deceased - estate invoiced for asset loss.";
             _missionOutroGUI.PressToContinueLabel.text = "Press Space";
+            AudioManager.Instance.Play("Lost");
         }
 
         _missionOutroGUI.CargoRemainingLabel.text = _theInventory.CargoString(_theInventory.PackageInventory);
