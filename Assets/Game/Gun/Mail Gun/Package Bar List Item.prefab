@@ -430,7 +430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 3458478193879728320}
   selectionOutline: {fileID: 5130132910019840540}
-  backgroundFill: {fileID: 3207554748046051924}
+  backgroundFill: {fileID: 7397819546858095527}
   badge: {fileID: 3904671863872212643}
   badgeText: {fileID: 7262736203662956866}
 --- !u!1 &8922995812539767549

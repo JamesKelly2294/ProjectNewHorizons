@@ -59,8 +59,11 @@ public class PackageGunBottomBar : MonoBehaviour
             listItem.selectionOutline.enabled = current == Selection;
             listItem.badgeText.text = "" + item.Value;
             listItem.badge.SetActive(item.Value > 1);
-            listItem.icon.color = PackageGunBottomBar.GetPackageTypePrimaryColor(item.Key);
-            listItem.selectionOutline.color = PackageGunBottomBar.GetPackageTypePrimaryColor(item.Key);
+
+            Color itemColor = PackageGunBottomBar.GetPackageTypePrimaryColor(item.Key);
+            listItem.icon.color = itemColor;
+            listItem.selectionOutline.color = itemColor;
+            listItem.backgroundFill.color = new Color(itemColor.r / 3, itemColor.g / 3, itemColor.b / 3, 0.9f);
 
             if (current == Selection) {
                 SelectedItemText.text = PackageGunBottomBar.GetPackageTypeString(item.Key);
