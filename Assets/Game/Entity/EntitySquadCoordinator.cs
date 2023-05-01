@@ -23,12 +23,14 @@ public class EntitySquadCoordinator : MonoBehaviour
     public float SpawnInterval = 5.0f;
     public float SpawnTimer;
 
+    private TrainLevelManager _trainLevelManager;
     private Train _theTrain;
 
     // Start is called before the first frame update
     void Start()
     {
         _theTrain = FindAnyObjectByType<Train>();
+        _trainLevelManager = FindAnyObjectByType<TrainLevelManager>();
 
         SpawnTimer = SpawnInterval;
     }
@@ -185,6 +187,8 @@ public class EntitySquadCoordinator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_trainLevelManager.State != TrainLevelState.Gameplay) { return; }
+        
         if (SpawningEnabled)
         {
             if (SpawnTimer < 0)

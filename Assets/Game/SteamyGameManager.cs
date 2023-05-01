@@ -18,12 +18,10 @@ public class SteamyGameManager : MonoBehaviour
     public int DeliveredBoxCount = 0;
     public int FailedBoxCount = 0;
 
-    private Train _theTrain;
-
     // Start is called before the first frame update
     void Start()
     {
-        _theTrain = FindFirstObjectByType<Train>();
+
     }
 
     // Update is called once per frame
@@ -60,8 +58,6 @@ public class SteamyGameManager : MonoBehaviour
             sb.MoneyText.text = Money.ToString("N0");
             sb.VictoryPointsText.text = VictoryPoints.ToString("N0");
         }
-
-        CheckGameState();
     }
 
     public static string CityName(City city)
@@ -87,28 +83,6 @@ public class SteamyGameManager : MonoBehaviour
     {
         FailedBoxCount += 1;
         AudioManager.Instance.Play("Package/Failed");
-    }
-
-    public void CheckGameState()
-    {
-        if (_theTrain.LocomotiveDamageable.CurrentHealth <= 0)
-        {
-            BeginLoss();
-        }
-    }
-
-    public void BeginLoss()
-    {
-        var gm = FindFirstObjectByType<GameManager>();
-
-        if (gm == null)
-        {
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            gm.ShowLoseScreen();
-        }
     }
 }
 
