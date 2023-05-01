@@ -19,13 +19,16 @@ public class TrainCar : MonoBehaviour
     public Damageable leftSideDamageable;
     public Damageable rightSidDamageable;
 
+    public GameObject normalVisuals;
+    public GameObject rearVisuals;
+
     [Header("Runtime")]
     public GameObject leftSideUpgradeGO;
     public GameObject rightSideUpgradeGO;
 
     private Player _player;
 
-    void Start()
+    void Awake()
     {
         var playerGO = GameObject.FindGameObjectWithTag("Player");
         _player = playerGO.GetComponent<Player>();
@@ -33,11 +36,6 @@ public class TrainCar : MonoBehaviour
         SpawnUpgrades();
     }
     
-    void Update()
-    {
-        
-    }
-
     void SpawnUpgrades()
     {
         leftSideUpgradeGO = SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true);

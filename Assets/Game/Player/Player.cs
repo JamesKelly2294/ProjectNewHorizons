@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public float footstepTime;
     public bool alive = true;
 
+    public GameObject cabooseVisual;
+    public GameObject normalVisual;
+
     void PlayFootstepAudio()
     {
         AudioManager.Instance.Play("SFX/PlayerWalk",

@@ -45,6 +45,13 @@ public class Train : MonoBehaviour
                 tc.transform.position = TrainCars[i - 1].transform.position + prevCarAftLink.transform.localPosition - curCarForwardLink.transform.localPosition;
                 AftCollider.transform.position = tc.aftLink.transform.position;
             }
+
+            if (i == StartingTrainCarPrefabs.Count - 1)
+            {
+                // coding
+                tc.normalVisuals.SetActive(false);
+                tc.rearVisuals.SetActive(true);
+            }
         }
     }
 

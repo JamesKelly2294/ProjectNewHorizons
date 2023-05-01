@@ -27,7 +27,7 @@ TagManager:
   - Damagable
   - TrainDamagable
   - EnemyBullet
-  - 
+  - TrainCollision
   - 
   - 
   - 
