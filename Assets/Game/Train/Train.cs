@@ -29,13 +29,14 @@ public class Train : MonoBehaviour
         ResetState();
     }
 
-    void ResetState()
+    public void ResetState()
     {
-        player.transform.position = transform.position + new Vector3(0.0f, 0.75f, 0.0f);
         player.StopInteracting();
+        player.transform.position = transform.position + new Vector3(0.0f, 0.75f, 0.0f);
 
         if (trainCarsContainer != null)
         {
+            TrainCars.Clear();
             Destroy(trainCarsContainer);
             trainCarsContainer = null;
         }
@@ -52,7 +53,7 @@ public class Train : MonoBehaviour
 
             TrainCar tc = trainCarGO.GetComponent<TrainCar>();
             TrainCars.Add(tc);
-            tc.transform.parent = transform;
+            tc.transform.parent = trainCarsContainer.transform;
 
             if (i == 0)
             {

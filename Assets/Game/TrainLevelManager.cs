@@ -57,7 +57,6 @@ public class TrainLevelManager : MonoBehaviour
         _theSteamGameManager.OriginCity = OriginCity;
         _theSteamGameManager.DestinationCity = DestinationCity;
 
-        ResetState();
         if (State == TrainLevelState.Intro)
         {
             StartCoroutine(PlayIntroSequence());
@@ -67,10 +66,13 @@ public class TrainLevelManager : MonoBehaviour
     private void ResetState()
     {
         currentLevelTime = 0.0f;
+        LevelProgress = 0.0f;
         levelOver = false;
         wonLevel = false;
         lostLevel = false;
+
         _theSquadCoordinator.ResetState();
+        _theTrain.ResetState();
     }
 
     private float _fadeFromBlackTime = 2.5f;
@@ -94,14 +96,14 @@ public class TrainLevelManager : MonoBehaviour
 
         _missionOutroGUI.PressToContinueLabel.color = Color.clear;
 
-        ResetState();
+        _theSquadCoordinator.ResetState();
+
         _thePlayer.enabled = false;
         _gameplayGUI.SetActive(false);
         if (wonLevel)
         {
             _theCameraRig.FadeToBlackInstant();
             _theCameraRig.ShowBlurInstant();
-            _theCameraRig.SetToCinematicAngle();
             _theCameraRig.FadeFromBlack(duration: _fadeFromBlackTime);
         }
         else
@@ -121,6 +123,9 @@ public class TrainLevelManager : MonoBehaviour
         _theCameraRig.FadeToBlack(duration: _fadeFromBlackTime);
         yield return new WaitForSeconds(_fadeFromBlackTime);
         _missionOutroGUI.gameObject.SetActive(false);
+
+        ResetState();
+
         yield return StartCoroutine(PlayIntroSequence());
     }
 
@@ -194,7 +199,10 @@ public class TrainLevelManager : MonoBehaviour
                 else
                 {
                     var gm = FindFirstObjectByType<GameManager>();
-                    gm.ShowLoseScreen();
+                    if (gm != null)
+                    {
+                        gm.ShowLoseScreen();
+                    }
                 }
             }
         }
