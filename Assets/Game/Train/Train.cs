@@ -23,6 +23,7 @@ public class Train : MonoBehaviour
     {
         var playerGO = Instantiate(PlayerPrefab);
         playerGO.transform.name = "Player";
+        playerGO.transform.parent = transform;
         player = playerGO.GetComponent<Player>();
 
 

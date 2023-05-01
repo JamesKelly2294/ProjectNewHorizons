@@ -12,4 +12,5 @@ public static class LayerConstants
     public const int PostProcessing = 6;
     public const int TheEternalPlane = 7;
     public const int EnemyBullet = 18;
+    public const int Dead = 20;
 }

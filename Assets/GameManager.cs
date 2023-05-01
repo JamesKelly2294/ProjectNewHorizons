@@ -15,6 +15,7 @@ public enum SceneIndices
 public struct PastState
 {
     public int PackagesDelivered;
+    public int PackagesLost;
     public int TotalMoneyEarned;
 }
 
@@ -40,6 +41,21 @@ public class GameManager : MonoBehaviour
     List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
 
     private GameObject _activeLoadingScreen;
+
+    public void PackageDelivered()
+    {
+        PastState.PackagesDelivered += 1;
+    }
+
+    public void PackageLost()
+    {
+        PastState.PackagesLost += 1;
+    }
+
+    public void MoneyEarned(PubSubListenerEvent e)
+    {
+        PastState.TotalMoneyEarned += (int)e.value;
+    }
 
     public void LoadGame()
     {

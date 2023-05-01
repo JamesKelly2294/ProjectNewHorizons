@@ -22,11 +22,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public string CargoString()
+    public string CargoString(Dictionary<PackageType, int> packages)
     {
         var str = "";
 
-        foreach (var entry in PackageInventory)
+        foreach (var entry in packages)
         {
             if (entry.Value == 0) { continue; }
             str += entry.Value + "x " + PackageName(entry.Key) + ", ";
@@ -40,6 +40,10 @@ public class Inventory : MonoBehaviour
 
     public static Inventory Instance;
 
+
+    public Dictionary<PackageType, int> PackagesDelivered = new Dictionary<PackageType, int>();
+    public Dictionary<PackageType, int> PackagesLost = new Dictionary<PackageType, int>();
+
     public Dictionary<PackageType, int> PackageInventory = new Dictionary<PackageType, int>();
     public PackageType? SelectionType = null;
 
@@ -52,23 +56,22 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PackageInventory[PackageType.automaton]         = 4;
-        PackageInventory[PackageType.gears]             = 3;
-        PackageInventory[PackageType.camera]            = 2;
-        PackageInventory[PackageType.goggles]           = 12;
-        PackageInventory[PackageType.keyboard]          = 2;
-        PackageInventory[PackageType.masqueradeMask]    = 3;
-        PackageInventory[PackageType.musicBox]          = 5;
-        PackageInventory[PackageType.necklace]          = 6;
-        PackageInventory[PackageType.pocketWatch]       = 4;
-        PackageInventory[PackageType.steamPipe]         = 3;
-
+        PackageInventory[PackageType.automaton] = 4;
+        PackageInventory[PackageType.gears] = 3;
+        PackageInventory[PackageType.camera] = 2;
+        PackageInventory[PackageType.goggles] = 12;
+        PackageInventory[PackageType.keyboard] = 2;
+        PackageInventory[PackageType.masqueradeMask] = 3;
+        PackageInventory[PackageType.musicBox] = 5;
+        PackageInventory[PackageType.necklace] = 6;
+        PackageInventory[PackageType.pocketWatch] = 4;
+        PackageInventory[PackageType.steamPipe] = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PackageWasShot(object package)
@@ -77,8 +80,44 @@ public class Inventory : MonoBehaviour
         PackageType packageType = ((Package)e.value).PackageType;
         PackageInventory[packageType] = Mathf.Max(0, PackageInventory[packageType] - 1);
 
-        if (PackageInventory[packageType] <= 0) {
+        if (PackageInventory[packageType] <= 0)
+        {
             PackageInventory.Remove(packageType);
         }
+    }
+
+    public void PackageDelivered(PubSubListenerEvent e)
+    {
+        var deliveredPackage = e.sender.GetComponent<Package>();
+
+        if (!PackagesDelivered.ContainsKey(deliveredPackage.PackageType))
+        {
+            PackagesDelivered[deliveredPackage.PackageType] = 1;
+        }
+        else
+        {
+            PackagesDelivered[deliveredPackage.PackageType] += 1;
+        }
+    }
+
+    public void PackageFailedToBeDelivered(PubSubListenerEvent e)
+    {
+        var lostPackage = e.sender.GetComponent<Package>();
+
+        if (!PackagesLost.ContainsKey(lostPackage.PackageType))
+        {
+            PackagesLost[lostPackage.PackageType] = 1;
+        }
+        else
+        {
+            PackagesLost[lostPackage.PackageType] += 1;
+        }
+    }
+
+    public void Clear()
+    {
+        PackagesDelivered.Clear();
+        PackagesLost.Clear();
+        PackageInventory.Clear();
     }
 }

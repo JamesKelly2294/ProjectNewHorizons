@@ -98,10 +98,12 @@ public class SteamyGameManager : MonoBehaviour
         DeliveredBoxCount += 1;
         VictoryPoints += 1;
         AudioManager.Instance.Play("Package/Delivered");
-        Money += PackageGunBottomBar.GetPackageTypeMonitaryValue(e.sender.GetComponent<Package>().PackageType);
+        var m = PackageGunBottomBar.GetPackageTypeMonitaryValue(e.sender.GetComponent<Package>().PackageType);
+        Money += m;
+        PubSubManager.Instance.Publish("money.gained", gameObject, m);
     }
 
-    public void PackageFailedToBeDelivered()
+    public void PackageFailedToBeDelivered(PubSubListenerEvent e)
     {
         FailedBoxCount += 1;
         AudioManager.Instance.Play("Package/Failed");

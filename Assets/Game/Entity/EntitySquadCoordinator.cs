@@ -23,6 +23,9 @@ public class EntitySquadCoordinator : MonoBehaviour
     public float SpawnInterval = 5.0f;
     public float SpawnTimer;
 
+    [Range(0, 1.0f)]
+    public float MailLoverChance = 0.2f;
+
     private TrainLevelManager _trainLevelManager;
     private Train _theTrain;
 
@@ -46,6 +49,7 @@ public class EntitySquadCoordinator : MonoBehaviour
         }
 
         _spawnedEntitiesContainer = new GameObject("Spawned Entities");
+        _spawnedEntitiesContainer.transform.parent = transform;
         SpawnTimer = SpawnInterval;
     }
 
@@ -189,7 +193,7 @@ public class EntitySquadCoordinator : MonoBehaviour
 
     public void SpawnNextSquad()
     {
-        if (Random.Range(0, 1.0f) < 0.2f)
+        if (Random.Range(0, 1.0f) < MailLoverChance)
         {
             SpawnMailLoverSquad();
         }

@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     private Train _theTrain;
     private float _randomSeed;
 
+    public bool _alive = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,9 +38,38 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ResetFiring();
-        AcquireTarget();
-        AimAtTarget();
+        if (_alive)
+        {
+            ResetFiring();
+            AcquireTarget();
+            AimAtTarget();
+        }
+    }
+
+    public void Die()
+    {
+        _alive = false;
+
+        var boid = GetComponent<Boid>();
+        if (boid)
+        {
+            Destroy(boid);
+        }
+
+        foreach (var gun in guns)
+        {
+            gun.ShouldFireWhenReady = false;
+            gun.enabled = false;
+        }
+
+        gameObject.AddComponent<DeathAnimation>();
+    }
+
+    IEnumerator DestroyAfterTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        Destroy(gameObject);
     }
 
     GameObject ClosestTarget(List<GameObject> targets)

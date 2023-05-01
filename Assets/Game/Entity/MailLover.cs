@@ -19,6 +19,21 @@ public class MailLover : MonoBehaviour
 
     private float _t = 0.0f;
 
+    bool _alive = true;
+
+    public void Die()
+    {
+        _alive = false;
+
+        var boid = GetComponent<Boid>();
+        if (boid)
+        {
+            Destroy(boid);
+        }
+
+        gameObject.AddComponent<DeathAnimation>();
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,6 +45,11 @@ public class MailLover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_alive)
+        {
+            return;
+        }
+
         var mailLoverInViewportSpace = Camera.main.WorldToViewportPoint(transform.position);
         var mailLoverIsVisible = mailLoverInViewportSpace.x > 0 &&
             mailLoverInViewportSpace.x < 1.0 &&

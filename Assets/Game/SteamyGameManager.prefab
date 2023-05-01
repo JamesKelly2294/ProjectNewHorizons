@@ -45,14 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1207626ff1d2452d8abb552dd5cdc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelProgress: 0
-  LevelTime: 60
-  OriginCity: 1
-  DestinationCity: 2
   VictoryPoints: 0
   Money: 0
   DeliveredBoxCount: 0
   FailedBoxCount: 0
+  LevelProgress: 0
+  LevelTime: 60
+  CurrentLevelTime: 0
+  OriginCity: 1
+  DestinationCity: 2
   automatonSprite: {fileID: 21300000, guid: ed7b09ab38ce64db9b4cdc066e76dc7c, type: 3}
   cameraSprite: {fileID: 21300000, guid: 94cfb888716004c1798b717494b10155, type: 3}
   gearsSprite: {fileID: 21300000, guid: 47431dc8032ad44f480a82283e281be5, type: 3}
@@ -99,7 +100,7 @@ MonoBehaviour:
         - m_Target: {fileID: 4202893863664604974}
           m_TargetAssemblyTypeName: SteamyGameManager, Assembly-CSharp
           m_MethodName: PackageFailedToBeDelivered
-          m_Mode: 1
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

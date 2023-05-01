@@ -42,6 +42,7 @@ public class EntitySquad : MonoBehaviour
     public void OnSquadMemberDeath(GameObject squadMember)
     {
         _squadMembers.Remove(squadMember);
+        squadMember.transform.parent = transform.parent;
 
         if (_squadMembers.Count == 0)
         {

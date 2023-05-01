@@ -38,6 +38,8 @@ public class TrainLevelManager : MonoBehaviour
     public bool wonLevel = false;
     public bool lostLevel = false;
 
+    private int enemiesKilled = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,8 +73,16 @@ public class TrainLevelManager : MonoBehaviour
         wonLevel = false;
         lostLevel = false;
 
+        enemiesKilled = 0;
+
+        _theInventory.Clear();
         _theSquadCoordinator.ResetState();
         _theTrain.ResetState();
+    }
+
+    public void EnemyKilled()
+    {
+        enemiesKilled += 1;
     }
 
     private float _fadeFromBlackTime = 2.5f;
@@ -93,6 +103,12 @@ public class TrainLevelManager : MonoBehaviour
             _missionOutroGUI.ShipStatusLabel.text = "Hull integrity lost. Captain MIA, assumed deceased - estate invoiced for asset loss.";
             _missionOutroGUI.PressToContinueLabel.text = "Press Space";
         }
+
+        _missionOutroGUI.CargoRemainingLabel.text = _theInventory.CargoString(_theInventory.PackageInventory);
+        _missionOutroGUI.CargoDeliveredLabel.text = _theInventory.CargoString(_theInventory.PackagesDelivered);
+        _missionOutroGUI.CargoLostLabel.text = _theInventory.CargoString(_theInventory.PackagesLost);
+
+        _missionOutroGUI.BountiesLabel.text = enemiesKilled + " Steam Punks liquidated";
 
         _missionOutroGUI.PressToContinueLabel.color = Color.clear;
 
@@ -135,7 +151,7 @@ public class TrainLevelManager : MonoBehaviour
 
         _missionIntroGUI.OriginLabel.text = SteamyGameManager.CityName(OriginCity);
         _missionIntroGUI.DestinationLabel.text = SteamyGameManager.CityName(DestinationCity);
-        _missionIntroGUI.CargoLabel.text = _theInventory.CargoString();
+        _missionIntroGUI.CargoLabel.text = _theInventory.CargoString(_theInventory.PackageInventory);
         _missionIntroGUI.StartLabel.color = Color.clear;
 
         _theCameraRig.FadeToBlackInstant();

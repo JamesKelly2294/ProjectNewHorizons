@@ -95,10 +95,34 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 997667846679041836}
+      - m_Target: {fileID: 8706571144057236468}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2141114302224060631}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8971569383509995285}
+        m_TargetAssemblyTypeName: MailLover, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -154,7 +178,7 @@ MonoBehaviour:
   PackageRecipientDesireBox: {fileID: 2141114302224060625}
   PackageReceiver: {fileID: 8706571144057236468}
   Desire: 0
-  PatienceTimer: 15
+  PatienceTimer: 25
 --- !u!1 &2164087441590195465
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,12 +512,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 87313696717879650, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3889
+      objectReference: {fileID: 0}
+    - target: {fileID: 87313696717879650, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3889
+      objectReference: {fileID: 0}
+    - target: {fileID: 87313696717879650, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3889
+      objectReference: {fileID: 0}
+    - target: {fileID: 87313696717879650, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.048613
       objectReference: {fileID: 0}
     - target: {fileID: 87313696717879650, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.254
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: 87313696717879650, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
       propertyPath: m_LocalPosition.z
@@ -618,12 +654,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 87313696717879653, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
   m_PrefabInstance: {fileID: 2053913306535029172}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2141114302224060631}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf31849f9d2fb49f5b45d227034aaf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2141114302224060631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 87313696717879651, guid: e5c30cd9df75244d0a9db36828e3c303, type: 3}
+  m_PrefabInstance: {fileID: 2053913306535029172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7707024874544240724
 PrefabInstance:
   m_ObjectHideFlags: 0

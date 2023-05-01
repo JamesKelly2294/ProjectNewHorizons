@@ -786,6 +786,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3388865214940183632}
     m_Modifications:
+    - target: {fileID: 1541603370, guid: 1c78811efcecb9a409ed5498d9a5e32e, type: 3}
+      propertyPath: antialiasingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6258889153650463327, guid: 1c78811efcecb9a409ed5498d9a5e32e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -812,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8766435005870913403, guid: 1c78811efcecb9a409ed5498d9a5e32e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.6513004
+      value: 4.6513042
       objectReference: {fileID: 0}
     - target: {fileID: 8766435005870913403, guid: 1c78811efcecb9a409ed5498d9a5e32e, type: 3}
       propertyPath: m_LocalRotation.w
