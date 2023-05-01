@@ -9,6 +9,8 @@ public class CameraRig : MonoBehaviour
     public CameraSway CameraSway;
 
     public Transform CinematicAngle;
+    public Transform CinematicAngleLevelTwo;
+    public Transform CinematicAngleLevelThree;
     public Transform GameplayAngle;
 
     public GameObject blurEffect;
@@ -33,9 +35,20 @@ public class CameraRig : MonoBehaviour
         SetToAngle(CinematicAngle);
     }
 
-    public void SetToGameplayAngle()
+    public void SetToGameplayAngle(Level level = Level.One)
     {
-        SetToAngle(GameplayAngle);
+        switch (level)
+        {
+            case Level.Two:
+                SetToAngle(CinematicAngleLevelTwo);
+                break;
+            case Level.Three:
+                SetToAngle(CinematicAngleLevelThree);
+                break;
+            default:
+                SetToAngle(GameplayAngle);
+                break;
+        }
     }
 
     public void FadeToBlack(float duration=1.0f)

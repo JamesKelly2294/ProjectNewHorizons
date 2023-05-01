@@ -12,6 +12,13 @@ public enum TrainLevelState {
     WaitingToExitOutro,
 }
 
+public enum Level
+{
+    One,
+    Two,
+    Three
+}
+
 public class TrainLevelManager : MonoBehaviour
 {
     public TrainLevelState State = TrainLevelState.Intro;
@@ -26,6 +33,10 @@ public class TrainLevelManager : MonoBehaviour
     private MissionIntroGUI _missionIntroGUI;
     private MissionOutroGUI _missionOutroGUI;
     private Inventory _theInventory;
+
+    // Lol
+    public int TrueLevel = 1;
+    public Level Level = Level.One;
 
     public float LevelProgress = 0f;
     public float LevelTime = 60f;
@@ -63,6 +74,10 @@ public class TrainLevelManager : MonoBehaviour
         {
             StartCoroutine(PlayIntroSequence());
         }
+        else
+        {
+            _theCameraRig.SetToGameplayAngle(Level);
+        }
     }
 
     private void ResetState()
@@ -83,6 +98,21 @@ public class TrainLevelManager : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled += 1;
+    }
+
+    public void IncrementLevel()
+    {
+        //ahahahahaha
+        if (Level == Level.One)
+        {
+            Level = Level.Two;
+        }
+        else if (Level == Level.Two)
+        {
+            Level = Level.Three;
+        }
+
+        TrueLevel += 1;
     }
 
     private float _fadeFromBlackTime = 2.5f;
@@ -140,6 +170,7 @@ public class TrainLevelManager : MonoBehaviour
         yield return new WaitForSeconds(_fadeFromBlackTime);
         _missionOutroGUI.gameObject.SetActive(false);
 
+        IncrementLevel();
         ResetState();
 
         yield return StartCoroutine(PlayIntroSequence());
@@ -178,7 +209,7 @@ public class TrainLevelManager : MonoBehaviour
 
         _theCameraRig.FadeToBlackInstant();
         _theCameraRig.HideBlurInstant();
-        _theCameraRig.SetToGameplayAngle();
+        _theCameraRig.SetToGameplayAngle(Level);
         _missionIntroGUI.gameObject.SetActive(false);
         _gameplayGUI.SetActive(true);
 

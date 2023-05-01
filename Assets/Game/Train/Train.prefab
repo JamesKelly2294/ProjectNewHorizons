@@ -154,6 +154,16 @@ MonoBehaviour:
   StartingTrainCarPrefabs:
   - {fileID: 3382950471246956835, guid: d7a346c800993fe4485669aa92fc2cd5, type: 3}
   - {fileID: 7828110802163125479, guid: 9612d9a00c1077848bd3e3140bd050d0, type: 3}
+  LevelTwoTrainCarPrefabs:
+  - {fileID: 7828110802163125479, guid: 20fa3890c44df1a4d9b42035b17c1d62, type: 3}
+  - {fileID: 3382950471246956835, guid: c2c2598cf29ad4740a754bc061ffa53c, type: 3}
+  - {fileID: 7828110802163125479, guid: 20fa3890c44df1a4d9b42035b17c1d62, type: 3}
+  LevelThreeTrainCarPrefabs:
+  - {fileID: 7828110802163125479, guid: 20fa3890c44df1a4d9b42035b17c1d62, type: 3}
+  - {fileID: 3382950471246956835, guid: 8693df30128680c48921b93a56e1c627, type: 3}
+  - {fileID: 7828110802163125479, guid: 20fa3890c44df1a4d9b42035b17c1d62, type: 3}
+  - {fileID: 3382950471246956835, guid: dcdb4f01bbae5db4cbfb6b6d80293dbd, type: 3}
+  - {fileID: 7828110802163125479, guid: 20fa3890c44df1a4d9b42035b17c1d62, type: 3}
   TrainCars: []
   ForwardCollider: {fileID: 8242433250644017744}
   AftCollider: {fileID: 5337801741929380711}

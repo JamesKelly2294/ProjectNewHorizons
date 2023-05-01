@@ -6,7 +6,10 @@ public class Train : MonoBehaviour
 {
     [Header("Prefabs")]
     public GameObject PlayerPrefab;
+    
     public List<GameObject> StartingTrainCarPrefabs = new List<GameObject>();
+    public List<GameObject> LevelTwoTrainCarPrefabs = new List<GameObject>();
+    public List<GameObject> LevelThreeTrainCarPrefabs = new List<GameObject>();
 
     public List<TrainCar> TrainCars = new List<TrainCar>();
 
@@ -15,12 +18,16 @@ public class Train : MonoBehaviour
 
     public Damageable LocomotiveDamageable;
 
+    private TrainLevelManager levelManager;
+
     private Player player;
     private GameObject trainCarsContainer;
 
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindFirstObjectByType<TrainLevelManager>();
+
         var playerGO = Instantiate(PlayerPrefab);
         playerGO.transform.name = "Player";
         playerGO.transform.parent = transform;
@@ -47,9 +54,27 @@ public class Train : MonoBehaviour
 
         LocomotiveDamageable.CurrentHealth = LocomotiveDamageable.MaxHealth;
 
-        for (var i = 0; i < StartingTrainCarPrefabs.Count; i++)
+        var prefabs = StartingTrainCarPrefabs;
+
+        if (levelManager != null)
         {
-            var trainCarPrefab = StartingTrainCarPrefabs[i];
+            switch (levelManager.Level)
+            {
+                case Level.Two:
+                    prefabs = LevelTwoTrainCarPrefabs;
+                    break;
+                case Level.Three:
+                    prefabs = LevelThreeTrainCarPrefabs;
+                    break;
+                default:
+                    prefabs = StartingTrainCarPrefabs;
+                    break;
+            }
+        }
+
+        for (var i = 0; i < prefabs.Count; i++)
+        {
+            var trainCarPrefab = prefabs[i];
             var trainCarGO = Instantiate(trainCarPrefab);
 
             TrainCar tc = trainCarGO.GetComponent<TrainCar>();
@@ -71,7 +96,7 @@ public class Train : MonoBehaviour
                 AftCollider.transform.position = tc.aftLink.transform.position;
             }
 
-            if (i == StartingTrainCarPrefabs.Count - 1)
+            if (i == prefabs.Count - 1)
             {
                 // coding
                 tc.normalVisuals.SetActive(false);
