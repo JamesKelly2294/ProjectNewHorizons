@@ -12,17 +12,26 @@ public enum SceneIndices
     ComputeTest = 3,
 }
 
+public struct PastState
+{
+    public int PackagesDelivered;
+    public int TotalMoneyEarned;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject transitionalLoadingScreen;
     public GameObject introLoadingScreen;
 
+    public PastState PastState;
+
     public string loadGameSceneName;
 
     // Start is called before the first frame update
     void Awake()
     {
+        PastState = new PastState();
         instance = this;
 
         SceneManager.LoadSceneAsync((int)SceneIndices.TitleScreen, LoadSceneMode.Additive);

@@ -13,6 +13,11 @@ public class EntitySquadCoordinatorEditor : Editor
 
         EntitySquadCoordinator obj = (EntitySquadCoordinator)target;
 
+        if(GUILayout.Button("Reset State"))
+        {
+            obj.ResetState();
+        }
+
         if(GUILayout.Button("Spawn Enemy Squad"))
         {
             obj.SpawnEnemySquad();

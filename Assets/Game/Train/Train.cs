@@ -15,13 +15,36 @@ public class Train : MonoBehaviour
 
     public Damageable LocomotiveDamageable;
 
+    private Player player;
+    private GameObject trainCarsContainer;
+
     // Start is called before the first frame update
     void Start()
     {
         var playerGO = Instantiate(PlayerPrefab);
         playerGO.transform.name = "Player";
-        playerGO.transform.position = transform.position + new Vector3(0.0f, 0.75f, 0.0f);
-        
+        player = playerGO.GetComponent<Player>();
+
+
+        ResetState();
+    }
+
+    void ResetState()
+    {
+        player.transform.position = transform.position + new Vector3(0.0f, 0.75f, 0.0f);
+        player.StopInteracting();
+
+        if (trainCarsContainer != null)
+        {
+            Destroy(trainCarsContainer);
+            trainCarsContainer = null;
+        }
+
+        trainCarsContainer = new GameObject("Train Cars");
+        trainCarsContainer.transform.parent = transform;
+
+        LocomotiveDamageable.CurrentHealth = LocomotiveDamageable.MaxHealth;
+
         for (var i = 0; i < StartingTrainCarPrefabs.Count; i++)
         {
             var trainCarPrefab = StartingTrainCarPrefabs[i];

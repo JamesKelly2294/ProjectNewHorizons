@@ -13,6 +13,7 @@ public class CameraRig : MonoBehaviour
 
     public GameObject blurEffect;
     public Image fullscreenFadeImage;
+    public Image fullscreenBlackBackground;
 
     public bool IsFading { get; private set; }
     public bool IsFadedToBlack { get; private set; }
@@ -57,6 +58,18 @@ public class CameraRig : MonoBehaviour
         IsFading = false;
 
         _currentCoroutine = StartCoroutine(Fade(Color.black, toBlack: false, time: duration));
+    }
+
+    public void ShowBlackBackground()
+    {
+        fullscreenBlackBackground.color = Color.black;
+        fullscreenBlackBackground.gameObject.SetActive(true);
+    }
+
+    public void HideBlackBackground()
+    {
+        fullscreenBlackBackground.color = Color.clear;
+        fullscreenBlackBackground.gameObject.SetActive(false);
     }
 
     public void FadeToBlackInstant()

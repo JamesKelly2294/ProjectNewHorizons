@@ -121,6 +121,12 @@ public class Player : MonoBehaviour
         CheckForInteractable();
     }
 
+    public void StopInteracting()
+    {
+        if (currentInteractable == null) { return; }
+        currentInteractable.SetInteracting(false, this);
+    }
+
     Interactable currentInteractable;
     void CheckForInteractable() {
 

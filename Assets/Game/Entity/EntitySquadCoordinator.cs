@@ -26,12 +26,26 @@ public class EntitySquadCoordinator : MonoBehaviour
     private TrainLevelManager _trainLevelManager;
     private Train _theTrain;
 
+    private GameObject _spawnedEntitiesContainer;
+
     // Start is called before the first frame update
     void Start()
     {
         _theTrain = FindAnyObjectByType<Train>();
         _trainLevelManager = FindAnyObjectByType<TrainLevelManager>();
 
+        ResetState();
+    }
+
+    public void ResetState()
+    {
+        if (_spawnedEntitiesContainer != null)
+        {
+            Destroy(_spawnedEntitiesContainer);
+            _spawnedEntitiesContainer = null;
+        }
+
+        _spawnedEntitiesContainer = new GameObject("Spawned Entities");
         SpawnTimer = SpawnInterval;
     }
 
@@ -55,6 +69,7 @@ public class EntitySquadCoordinator : MonoBehaviour
         var targetPosition = SelectTargetPosition(side);
 
         var EntitySquadGO = Instantiate(squadPrefab);
+        EntitySquadGO.transform.parent = _spawnedEntitiesContainer.transform;
         EntitySquadGO.transform.position = spawnPosition;
 
         var targetGO = Instantiate(TargetPrefab);
