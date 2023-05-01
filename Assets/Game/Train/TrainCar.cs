@@ -90,6 +90,8 @@ public class TrainCar : MonoBehaviour
         var spawnedUpgrade = SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: true);
         leftSideUpgradeGO = spawnedUpgrade;
 
+        AudioManager.Instance.Play("Gun/Destroyed");
+
         var repairGO = Instantiate(RepairSidePrefab);
         repairGO.transform.parent = transform;
         repairGO.transform.position = spawnedUpgrade.transform.position;
@@ -105,6 +107,8 @@ public class TrainCar : MonoBehaviour
             leftSideUpgradeGO = null;
 
             leftSideUpgradeGO = SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: false);
+
+            AudioManager.Instance.Play("Gun/Repaired");
         });
     }
 
@@ -116,6 +120,8 @@ public class TrainCar : MonoBehaviour
 
         var spawnedUpgrade = SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
         rightSideUpgradeGO = spawnedUpgrade;
+
+        AudioManager.Instance.Play("Gun/Destroyed");
 
         var repairGO = Instantiate(RepairSidePrefab);
         repairGO.transform.parent = transform;
@@ -132,6 +138,8 @@ public class TrainCar : MonoBehaviour
             rightSideUpgradeGO = null;
 
             rightSideUpgradeGO = SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: false);
+
+            AudioManager.Instance.Play("Gun/Repaired");
         });
     }
 
