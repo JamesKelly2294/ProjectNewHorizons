@@ -62,6 +62,7 @@ public class PackageGunBottomBar : MonoBehaviour
 
             Color itemColor = PackageGunBottomBar.GetPackageTypePrimaryColor(item.Key);
             listItem.icon.color = itemColor;
+            listItem.icon.sprite = PackageGunBottomBar.GetPackageTypeSprite(item.Key);
             listItem.selectionOutline.color = itemColor;
             listItem.backgroundFill.color = new Color(itemColor.r / 3, itemColor.g / 3, itemColor.b / 3, 0.9f);
 
@@ -96,17 +97,17 @@ public class PackageGunBottomBar : MonoBehaviour
     {
         switch (packageType)
         {
-            case PackageType.automaton:         return Color.HSVToRGB(0.0f, 1, 1);
-            case PackageType.camera:            return Color.HSVToRGB(0.1f, 1, 1);
-            case PackageType.gears:             return Color.HSVToRGB(0.2f, 1, 1);
-            case PackageType.goggles:           return Color.HSVToRGB(0.3f, 1, 1);
-            case PackageType.keyboard:          return Color.HSVToRGB(0.4f, 1, 1);
-            case PackageType.masqueradeMask:    return Color.HSVToRGB(0.5f, 1, 1);
-            case PackageType.musicBox:          return Color.HSVToRGB(0.6f, 1, 1);
-            case PackageType.necklace:          return Color.HSVToRGB(0.7f, 1, 1);
-            case PackageType.pocketWatch:       return Color.HSVToRGB(0.8f, 1, 1);
-            case PackageType.steamPipe:         return Color.HSVToRGB(0.9f, 1, 1);
-            default:                            return Color.HSVToRGB(1.0f, 1, 1);
+            case PackageType.automaton:         return Color.HSVToRGB(0.1f, 0.8f, 1);
+            case PackageType.camera:            return Color.HSVToRGB(0.0f, 0.8f, 1);
+            case PackageType.gears:             return Color.HSVToRGB(0.2f, 0.8f, 1);
+            case PackageType.goggles:           return Color.HSVToRGB(0.3f, 0.8f, 1);
+            case PackageType.keyboard:          return Color.HSVToRGB(0.4f, 0.8f, 1);
+            case PackageType.masqueradeMask:    return Color.HSVToRGB(0.5f, 0.8f, 1);
+            case PackageType.musicBox:          return Color.HSVToRGB(0.6f, 0.8f, 1.5f);
+            case PackageType.necklace:          return Color.HSVToRGB(0.7f, 0.8f, 1.5f);
+            case PackageType.pocketWatch:       return Color.HSVToRGB(0.8f, 0.8f, 1);
+            case PackageType.steamPipe:         return Color.HSVToRGB(0.9f, 0.8f, 1);
+            default:                            return Color.HSVToRGB(1.0f, 0.8f, 1);
         }
     }
 
@@ -125,6 +126,24 @@ public class PackageGunBottomBar : MonoBehaviour
             case PackageType.pocketWatch:       return     2_000;
             case PackageType.steamPipe:         return       100;
             default:                            return         0;
+        }
+    }
+
+    public static Sprite GetPackageTypeSprite(PackageType packageType)
+    {
+        switch (packageType)
+        {
+            case PackageType.automaton:         return  SteamyGameManager.Instance.automatonSprite;
+            case PackageType.camera:            return  SteamyGameManager.Instance.cameraSprite;
+            case PackageType.gears:             return  SteamyGameManager.Instance.gearsSprite;
+            case PackageType.goggles:           return  SteamyGameManager.Instance.gogglesSprite;
+            case PackageType.keyboard:          return  SteamyGameManager.Instance.keyboardSprite;
+            case PackageType.masqueradeMask:    return  SteamyGameManager.Instance.masqueradeMaskSprite;
+            case PackageType.musicBox:          return  SteamyGameManager.Instance.musicBoxSprite;
+            case PackageType.necklace:          return  SteamyGameManager.Instance.necklaceSprite;
+            case PackageType.pocketWatch:       return  SteamyGameManager.Instance.pocketWatchSprite;
+            case PackageType.steamPipe:         return  SteamyGameManager.Instance.steamPipeSprite;
+            default:                            return  SteamyGameManager.Instance.automatonSprite;
         }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class SteamyGameManager : MonoBehaviour
 {
 
+    public static SteamyGameManager Instance;
+
     public float LevelProgress = 0f;
     public float LevelTime = 60f;
     private float currentLevelTime = 0f;
@@ -17,6 +19,28 @@ public class SteamyGameManager : MonoBehaviour
 
     public int DeliveredBoxCount = 0;
     public int FailedBoxCount = 0;
+
+    // I guess they go here...
+    public Sprite automatonSprite;
+    public Sprite cameraSprite;
+    public Sprite gearsSprite;
+    public Sprite gogglesSprite;
+    public Sprite keyboardSprite;
+    public Sprite masqueradeMaskSprite;
+    public Sprite musicBoxSprite;
+    public Sprite necklaceSprite;
+    public Sprite pocketWatchSprite;
+    public Sprite steamPipeSprite;
+
+    void Awake()
+    {
+        if (Instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

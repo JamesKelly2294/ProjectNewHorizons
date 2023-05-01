@@ -19,9 +19,16 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PackageInventory[PackageType.automaton] = 1;
-        PackageInventory[PackageType.camera] = 2;
-        PackageInventory[PackageType.goggles] = 12;
+        PackageInventory[PackageType.automaton]         = 4;
+        PackageInventory[PackageType.gears]             = 3;
+        PackageInventory[PackageType.camera]            = 2;
+        PackageInventory[PackageType.goggles]           = 12;
+        PackageInventory[PackageType.keyboard]          = 2;
+        PackageInventory[PackageType.masqueradeMask]    = 3;
+        PackageInventory[PackageType.musicBox]          = 5;
+        PackageInventory[PackageType.necklace]          = 6;
+        PackageInventory[PackageType.pocketWatch]       = 4;
+        PackageInventory[PackageType.steamPipe]         = 3;
 
     }
 

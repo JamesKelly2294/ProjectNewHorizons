@@ -62,6 +62,7 @@ public class PackageRecipientDesireBox : MonoBehaviour
         badge.SetActive(Count > 1);
         backgroundFill.color = new Color(itemColor.r / 3, itemColor.g / 3, itemColor.b / 3, 0.9f);
         forgroundImage.color = itemColor;
+        forgroundImage.sprite = PackageGunBottomBar.GetPackageTypeSprite(PackageType);
 
 
         // Animate to emote

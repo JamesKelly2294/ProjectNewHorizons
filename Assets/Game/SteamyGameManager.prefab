@@ -49,10 +49,20 @@ MonoBehaviour:
   LevelTime: 60
   OriginCity: 1
   DestinationCity: 2
-  LifetimeDeliveredPackages: 0
+  VictoryPoints: 0
   Money: 0
   DeliveredBoxCount: 0
   FailedBoxCount: 0
+  automatonSprite: {fileID: 21300000, guid: ed7b09ab38ce64db9b4cdc066e76dc7c, type: 3}
+  cameraSprite: {fileID: 21300000, guid: 94cfb888716004c1798b717494b10155, type: 3}
+  gearsSprite: {fileID: 21300000, guid: 47431dc8032ad44f480a82283e281be5, type: 3}
+  gogglesSprite: {fileID: 21300000, guid: bcdf8530b9b5044599add042bc6ce95d, type: 3}
+  keyboardSprite: {fileID: 21300000, guid: 96d4480a754d84325ac5716909998d97, type: 3}
+  masqueradeMaskSprite: {fileID: 21300000, guid: 8012dee32fe0b4ee784eb498204ba4ad, type: 3}
+  musicBoxSprite: {fileID: 21300000, guid: 9c6878d926e4d4cec8df8506846fbe2d, type: 3}
+  necklaceSprite: {fileID: 21300000, guid: 0ae1934a47af14b0abebd9fcb41aa80e, type: 3}
+  pocketWatchSprite: {fileID: 21300000, guid: bb9984627cb3c43f4b6ead57793ad37b, type: 3}
+  steamPipeSprite: {fileID: 21300000, guid: d08e6fda1cfa2444ba2d94bd8af6f8f1, type: 3}
 --- !u!114 &4202893863664604972
 MonoBehaviour:
   m_ObjectHideFlags: 0
