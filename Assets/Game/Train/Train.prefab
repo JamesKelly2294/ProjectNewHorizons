@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2909584663769989190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.83, y: 1.38, z: 0.05566746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd0cc64ef604192911d9e984982754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 500
+  MaxHealth: 0
+  CurrentHealth: 250
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -156,6 +157,7 @@ MonoBehaviour:
   TrainCars: []
   ForwardCollider: {fileID: 8242433250644017744}
   AftCollider: {fileID: 5337801741929380711}
+  LocomotiveDamageable: {fileID: 6241351012713294041}
 --- !u!1 &5337801741929380711
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8278296487151367004}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 9.83, y: 1.38, z: 0.05566746}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.438995, y: 7.5503554, z: 4.9229784}
   m_ConstrainProportionsScale: 0
   m_Children: []

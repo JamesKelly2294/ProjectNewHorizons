@@ -10,6 +10,14 @@ public class Enemy : MonoBehaviour
 
     public GameObject target;
 
+    [Range(0, 60.0f)]
+    public float ShootTime = 7.0f; // how long shouldFireWhenReady should be true
+    [Range(0, 60.0f)]
+    public float ShootCooldown = 2.0f; // how long shouldFireWhenReady should be false
+    private bool _isShooting = true;
+    private float _shootTimer;
+    private float _cooldownTimer;
+
     private Train _theTrain;
     private float _randomSeed;
 
@@ -19,6 +27,8 @@ public class Enemy : MonoBehaviour
         // at the moment, the enemies only attack the train
         _theTrain = FindFirstObjectByType<Train>();
         _randomSeed = Random.Range(0, 1.0f);
+
+        _shootTimer = Random.Range(0, ShootTime);
 
         guns = GetComponentsInChildren<Gun>().ToList();
     }
@@ -31,13 +41,13 @@ public class Enemy : MonoBehaviour
         AimAtTarget();
     }
 
-    TrainCar ClosestTrainCar(List<TrainCar> trainCars)
+    GameObject ClosestTarget(List<GameObject> targets)
     {
-        if(trainCars.Count == 0) { return null; }
+        if(targets.Count == 0) { return null; }
 
-        var closestCar = trainCars[0];
+        var closestCar = targets[0];
         var closestCarDistance = Vector3.SqrMagnitude(transform.position - closestCar.transform.position);
-        foreach (var trainCar in trainCars)
+        foreach (var trainCar in targets)
         {
             var newDistance = Vector3.SqrMagnitude(transform.position - trainCar.transform.position);
             if (newDistance < closestCarDistance)
@@ -52,6 +62,25 @@ public class Enemy : MonoBehaviour
 
     void ResetFiring()
     {
+        if (_isShooting)
+        {
+            _shootTimer -= Time.deltaTime;
+        }
+        else
+        {
+            _cooldownTimer -= Time.deltaTime;
+        }
+
+        if (_isShooting && _shootTimer < 0)
+        {
+            _isShooting = false;
+            _cooldownTimer = ShootCooldown;
+        } else if (!_isShooting && _cooldownTimer < 0)
+        {
+            _isShooting = true;
+            _shootTimer = ShootTime;
+        }
+
         foreach (var gun in guns)
         {
             gun.ShouldFireWhenReady = false;
@@ -63,9 +92,13 @@ public class Enemy : MonoBehaviour
         // oh boy, assumptions!
         var side = transform.position.x < _theTrain.transform.position.x ? TrainSide.Left : TrainSide.Right;
         
-        var trainCars = _theTrain.TrainCars.Where(e => !e.IsSideDestroyed(side)).ToList();
+        var trainCars = _theTrain.TrainCars
+            .Where(e => !e.IsSideDestroyed(side))
+            .Select(e => e.gameObject)
+            .Append(_theTrain.LocomotiveDamageable.gameObject)
+            .ToList();
 
-        var closestCar = ClosestTrainCar(trainCars);
+        var closestCar = ClosestTarget(trainCars);
         if (closestCar != null)
         {
             target = closestCar.gameObject;
@@ -78,8 +111,9 @@ public class Enemy : MonoBehaviour
 
     void AimAtTarget()
     {
-        if (target == null) { return; }
+        if (target == null || !_isShooting) { return; }
 
+        var anyGunShooting = false;
         foreach (var gun in guns)
         {
             gun.RequestedPosition = target.transform.position + Vector3.forward * Mathf.Sin(2.0f * Time.time + _randomSeed) * 1.5f;
@@ -91,6 +125,7 @@ public class Enemy : MonoBehaviour
                 gunPosInViewportSpace.y < 1.0;
 
             gun.ShouldFireWhenReady = shouldFireWhenReady;
+            anyGunShooting |= gun.ShouldFireWhenReady;
         }
     }
 }

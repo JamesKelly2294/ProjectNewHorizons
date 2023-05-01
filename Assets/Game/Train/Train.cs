@@ -13,6 +13,8 @@ public class Train : MonoBehaviour
     public GameObject ForwardCollider;
     public GameObject AftCollider;
 
+    public Damageable LocomotiveDamageable;
+
     // Start is called before the first frame update
     void Start()
     {

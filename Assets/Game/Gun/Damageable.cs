@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-
-    private float maxHealth;
+    [HideInInspector]
+    public float MaxHealth;
     public float CurrentHealth = 10f;
 
     public UnityEvent OnDamage;
@@ -15,7 +15,7 @@ public class Damageable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = CurrentHealth;
+        MaxHealth = CurrentHealth;
     }
 
     // Update is called once per frame

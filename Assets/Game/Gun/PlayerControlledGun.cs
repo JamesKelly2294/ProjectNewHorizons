@@ -95,6 +95,12 @@ public class PlayerControlledGun : MonoBehaviour
         player.gameObject.transform.position = originalPosition;
         player.gameObject.transform.rotation = originalRotation;
         gun.RequestedPosition = gun.gameObject.transform.position + (100f * gun.gameObject.transform.forward);
+
+        if (gun.ShouldFireWhenReady)
+        {
+            pubSubSender.Publish("player.shootingStop");
+        }
+
         gun.ShouldFireWhenReady = false;
         gun.GunOperator = null;
         enabled = false;
