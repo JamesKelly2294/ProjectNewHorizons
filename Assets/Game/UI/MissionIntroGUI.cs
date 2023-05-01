@@ -8,4 +8,5 @@ public class MissionIntroGUI : MonoBehaviour
     public TextMeshProUGUI OriginLabel;
     public TextMeshProUGUI DestinationLabel;
     public TextMeshProUGUI CargoLabel;
+    public TextMeshProUGUI StartLabel;
 }

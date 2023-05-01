@@ -7,18 +7,24 @@ public class SteamyGameManager : MonoBehaviour
 
     public static SteamyGameManager Instance;
 
-    public float LevelProgress = 0f;
-    public float LevelTime = 60f;
-    private float currentLevelTime = 0f;
-
-    public City OriginCity = City.steamerly;
-    public City DestinationCity = City.geartonsteamshireville;
-
     public int VictoryPoints = 0;
     public int Money = 0;
 
     public int DeliveredBoxCount = 0;
     public int FailedBoxCount = 0;
+
+    // "Pass-through for Train Level Manager"
+    // I'm only doing this because I'm lazy and don't want to update references atm
+    [HideInInspector]
+    public float LevelProgress = 0f;
+    [HideInInspector]
+    public float LevelTime = 60f;
+    [HideInInspector]
+    public float CurrentLevelTime = 0f;
+    [HideInInspector]
+    public City OriginCity = City.steamerly;
+    [HideInInspector]
+    public City DestinationCity = City.geartonsteamshireville;
 
     // I guess they go here...
     public Sprite automatonSprite;
@@ -51,14 +57,6 @@ public class SteamyGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        currentLevelTime += Time.deltaTime;
-        LevelProgress = currentLevelTime / LevelTime;
-        if (LevelProgress > 1) {
-
-            // Just loop for now...
-            currentLevelTime -= LevelTime;
-        }
-
         // Calculate total package inventory
         int PackageInventory = 0;
         if (Inventory.Instance != null) {

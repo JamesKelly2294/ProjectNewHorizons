@@ -4,6 +4,39 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public static string PackageName(PackageType package)
+    {
+        switch (package)
+        {
+            case PackageType.automaton: return "Automaton";
+            case PackageType.gears: return "Gears";
+            case PackageType.camera: return "Camera";
+            case PackageType.goggles: return "Goggles";
+            case PackageType.keyboard: return "Keyboard";
+            case PackageType.masqueradeMask: return "Masquerade Mask";
+            case PackageType.musicBox: return "Music Box";
+            case PackageType.necklace: return "Necklace";
+            case PackageType.pocketWatch: return "Pocket Watch";
+            case PackageType.steamPipe: return "Steam Pipe";
+            default: return "Unknown";
+        }
+    }
+
+    public string CargoString()
+    {
+        var str = "";
+
+        foreach (var entry in PackageInventory)
+        {
+            if (entry.Value == 0) { continue; }
+            str += entry.Value + "x " + PackageName(entry.Key) + ", ";
+        }
+
+        if (str == "") { return str; }
+
+        str = str.Remove(str.Length - 2, 2);
+        return str;
+    }
 
     public static Inventory Instance;
 

@@ -19,8 +19,17 @@ public class TrainLevelManager : MonoBehaviour
     private Train _theTrain;
     private Player _thePlayer;
     private CameraRig _theCameraRig;
+    private SteamyGameManager _theSteamGameManager;
     private GameObject _gameplayGUI;
     private MissionIntroGUI _missionIntroGUI;
+    private Inventory _theInventory;
+
+    public float LevelProgress = 0f;
+    public float LevelTime = 60f;
+    private float currentLevelTime = 0f;
+
+    public City OriginCity = City.steamerly;
+    public City DestinationCity = City.geartonsteamshireville;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +37,15 @@ public class TrainLevelManager : MonoBehaviour
         _theTrain = FindFirstObjectByType<Train>();
         _thePlayer = FindFirstObjectByType<Player>();
         _theCameraRig = FindFirstObjectByType<CameraRig>();
+        _theSteamGameManager = FindFirstObjectByType<SteamyGameManager>();
         _missionIntroGUI = FindFirstObjectByType<MissionIntroGUI>(FindObjectsInactive.Include);
         _missionIntroGUI.gameObject.SetActive(false);
+        _theInventory = FindFirstObjectByType<Inventory>();
 
         _gameplayGUI = GameObject.FindGameObjectWithTag("GameplayGUI");
+
+        _theSteamGameManager.OriginCity = OriginCity;
+        _theSteamGameManager.DestinationCity = DestinationCity;
 
         if (State == TrainLevelState.Intro)
         {
@@ -45,6 +59,11 @@ public class TrainLevelManager : MonoBehaviour
     {
         State = TrainLevelState.EnteringIntroSequence;
 
+        _missionIntroGUI.OriginLabel.text = SteamyGameManager.CityName(OriginCity);
+        _missionIntroGUI.DestinationLabel.text = SteamyGameManager.CityName(DestinationCity);
+        _missionIntroGUI.CargoLabel.text = _theInventory.CargoString();
+        _missionIntroGUI.StartLabel.color = Color.clear;
+
         _theCameraRig.FadeToBlackInstant();
         _thePlayer.enabled = false;
         _gameplayGUI.SetActive(false);
@@ -55,8 +74,7 @@ public class TrainLevelManager : MonoBehaviour
 
         yield return new WaitForSeconds(_fadeFromBlackTime);
 
-        //TODO: Display mission info
-
+        _missionIntroGUI.StartLabel.color = Color.white;
         State = TrainLevelState.WaitingToEnterGameplay;
     }
 
@@ -85,7 +103,7 @@ public class TrainLevelManager : MonoBehaviour
     {
         if (State == TrainLevelState.Gameplay)
         {
-            CheckGameState();
+            GameplayTick();
         }
         else if (State == TrainLevelState.WaitingToEnterGameplay)
         {
@@ -96,8 +114,25 @@ public class TrainLevelManager : MonoBehaviour
         }
     }
 
-    public void CheckGameState()
+    public void UpdateLevelProgress()
     {
+        currentLevelTime += Time.deltaTime;
+        LevelProgress = currentLevelTime / LevelTime;
+        if (LevelProgress > 1)
+        {
+
+            // Just loop for now...
+            currentLevelTime -= LevelTime;
+        }
+
+        _theSteamGameManager.LevelProgress = LevelProgress;
+        _theSteamGameManager.CurrentLevelTime = currentLevelTime;
+    }
+
+    public void GameplayTick()
+    {
+        UpdateLevelProgress();
+
         if (_theTrain.LocomotiveDamageable.CurrentHealth <= 0)
         {
             BeginLoss();
