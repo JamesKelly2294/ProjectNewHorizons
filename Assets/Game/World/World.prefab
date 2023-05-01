@@ -1,74 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &133025599636912151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6869844062133005918}
-  - component: {fileID: 904868895321983089}
-  m_Layer: 0
-  m_Name: Cloud Scroller (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6869844062133005918
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133025599636912151}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -403, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3421406857245236027}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &904868895321983089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133025599636912151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8a67d3a11c14a65b2ab38b541a3f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CenterTiles:
-  - {fileID: 9002286490265355834, guid: 95b704394a65c42a4bbdfa9a09d832b4, type: 3}
-  - {fileID: 7090545819608057488, guid: ef1e1203427964d91af6bcb705f26c3e, type: 3}
-  - {fileID: 7476752733007445805, guid: c5906dd4074d8472089f6afa3fcae4dc, type: 3}
-  - {fileID: 3854723353359902847, guid: a65556b68045947548d5595dd05b55f7, type: 3}
-  - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
-  - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
-  InnerTiles:
-  - {fileID: 9002286490265355834, guid: 95b704394a65c42a4bbdfa9a09d832b4, type: 3}
-  - {fileID: 7090545819608057488, guid: ef1e1203427964d91af6bcb705f26c3e, type: 3}
-  - {fileID: 7476752733007445805, guid: c5906dd4074d8472089f6afa3fcae4dc, type: 3}
-  - {fileID: 3854723353359902847, guid: a65556b68045947548d5595dd05b55f7, type: 3}
-  - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
-  - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
-  OuterTiles:
-  - {fileID: 9002286490265355834, guid: 95b704394a65c42a4bbdfa9a09d832b4, type: 3}
-  - {fileID: 7090545819608057488, guid: ef1e1203427964d91af6bcb705f26c3e, type: 3}
-  - {fileID: 7476752733007445805, guid: c5906dd4074d8472089f6afa3fcae4dc, type: 3}
-  - {fileID: 3854723353359902847, guid: a65556b68045947548d5595dd05b55f7, type: 3}
-  - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
-  - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
-  Speed: 0.1
-  TileSpacing: 2
-  NumColumns: 8
-  NumRows: 8
 --- !u!1 &1090568705331974406
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3421406857245236027}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8626435876913270312
 MeshFilter:
@@ -199,8 +130,6 @@ Transform:
   - {fileID: 7157240153401280791}
   - {fileID: 1920573549964593469}
   - {fileID: 8117080149240234599}
-  - {fileID: 7537179284909986788}
-  - {fileID: 6869844062133005918}
   - {fileID: 6272500346176307061}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -243,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 3564817410501886171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -303, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3421406857245236027}
@@ -283,7 +212,7 @@ MonoBehaviour:
   - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
   - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
   Speed: 1
-  TileSpacing: 1
+  TileSpacing: 2
   NumColumns: 8
   NumRows: 8
 --- !u!1 &4935294417566803062
@@ -339,75 +268,6 @@ MonoBehaviour:
   TileSpacing: 200
   NumColumns: 1
   NumRows: 3
---- !u!1 &5496254659509137609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7537179284909986788}
-  - component: {fileID: 5022586000524679644}
-  m_Layer: 0
-  m_Name: Cloud Scroller (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7537179284909986788
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5496254659509137609}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -353, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3421406857245236027}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5022586000524679644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5496254659509137609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8a67d3a11c14a65b2ab38b541a3f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CenterTiles:
-  - {fileID: 9002286490265355834, guid: 95b704394a65c42a4bbdfa9a09d832b4, type: 3}
-  - {fileID: 7090545819608057488, guid: ef1e1203427964d91af6bcb705f26c3e, type: 3}
-  - {fileID: 7476752733007445805, guid: c5906dd4074d8472089f6afa3fcae4dc, type: 3}
-  - {fileID: 3854723353359902847, guid: a65556b68045947548d5595dd05b55f7, type: 3}
-  - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
-  - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
-  InnerTiles:
-  - {fileID: 9002286490265355834, guid: 95b704394a65c42a4bbdfa9a09d832b4, type: 3}
-  - {fileID: 7090545819608057488, guid: ef1e1203427964d91af6bcb705f26c3e, type: 3}
-  - {fileID: 7476752733007445805, guid: c5906dd4074d8472089f6afa3fcae4dc, type: 3}
-  - {fileID: 3854723353359902847, guid: a65556b68045947548d5595dd05b55f7, type: 3}
-  - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
-  - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
-  OuterTiles:
-  - {fileID: 9002286490265355834, guid: 95b704394a65c42a4bbdfa9a09d832b4, type: 3}
-  - {fileID: 7090545819608057488, guid: ef1e1203427964d91af6bcb705f26c3e, type: 3}
-  - {fileID: 7476752733007445805, guid: c5906dd4074d8472089f6afa3fcae4dc, type: 3}
-  - {fileID: 3854723353359902847, guid: a65556b68045947548d5595dd05b55f7, type: 3}
-  - {fileID: 8677722221502364060, guid: 3f647a4d40a184ea6a62c858d6287c8b, type: 3}
-  - {fileID: 7954130833724068174, guid: 4f2011aa919fe4823b5f29f1fd7d4114, type: 3}
-  Speed: 0.4
-  TileSpacing: 2
-  NumColumns: 8
-  NumRows: 8
 --- !u!1 &7261255447334196921
 GameObject:
   m_ObjectHideFlags: 0
