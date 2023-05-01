@@ -75,8 +75,8 @@ public class PackageRecipientDesireBox : MonoBehaviour
         waitingGroup.alpha = 1 - switchToEmoteCurve.Evaluate(currentEmoteCurvePosition / emoteCurveTime);
         emoteGroup.alpha = switchToEmoteCurve.Evaluate(currentEmoteCurvePosition / emoteCurveTime);
 
-        sadEmote.SetActive(Desire > 0.66);
-        mehEmote.SetActive(Desire > 0.33 && Desire <= 0.66);
-        happyEmote.SetActive(Desire <= 0.33);
+        sadEmote.SetActive(Desire > 0.99);
+        mehEmote.SetActive(Desire > 0.75 && Desire <= 0.99);
+        happyEmote.SetActive(Desire <= 0.75);
     }
 }

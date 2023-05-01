@@ -40,6 +40,14 @@ public class Boid : MonoBehaviour
 
     private BoidFlock _myFlock;
 
+    public BoidFlock BoidFlock
+    {
+        get
+        {
+            return _myFlock;
+        }
+    }
+
     private bool ShouldPerformNeighborDistanceCheck
     {
         get
