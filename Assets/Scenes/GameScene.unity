@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.47058824, g: 0.7882353, b: 0.9137255, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.0014
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -364,10 +364,6 @@ PrefabInstance:
     - target: {fileID: 34791236190721935, guid: 94966a59827a24ff798a6565866c4c00, type: 3}
       propertyPath: m_Name
       value: GameplayGUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 34791236190721935, guid: 94966a59827a24ff798a6565866c4c00, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 34791236230586296, guid: 94966a59827a24ff798a6565866c4c00, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1624,7 +1620,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108605047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2631,6 +2627,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Rig
       objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 42.788033
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.6513042
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48384356
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.8751545
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246220854399406582, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
 --- !u!1001 &3723964132394296009
@@ -2686,6 +2710,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3723964131838640719, guid: 62b098600f465cc4f867564f8689221a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100863982438747653, guid: 62b098600f465cc4f867564f8689221a, type: 3}
+      propertyPath: State
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

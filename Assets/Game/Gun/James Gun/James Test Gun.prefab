@@ -179,7 +179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1b6fdcf84308a4fc0b5177ff2aa27734, type: 2}
+  - {fileID: 2100000, guid: fb9ba62ce47b91640aa14ec003b19826, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5106,7 +5106,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 345681487936440189581b504c7e961a, type: 2}
+  - {fileID: 2100000, guid: c5e5168b9ee21184887785b2a708270e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5187,6 +5187,7 @@ MonoBehaviour:
   GunOperatorPosition: {fileID: 8814002088404825275}
   RequestedPosition: {x: 0, y: 0, z: 0}
   ShouldFireWhenReady: 0
+  LimitRotation: 1
   minRotation: -75
   maxRotation: 75
   RotationSpeed: 2
@@ -5575,7 +5576,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1b6fdcf84308a4fc0b5177ff2aa27734, type: 2}
+  - {fileID: 2100000, guid: fb9ba62ce47b91640aa14ec003b19826, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
