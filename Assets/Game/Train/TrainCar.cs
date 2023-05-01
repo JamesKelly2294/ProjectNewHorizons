@@ -73,6 +73,7 @@ public class TrainCar : MonoBehaviour
 
     private void DisableUpgradeInteractable(GameObject go)
     {
+        if (go == null) { return; }
         var interactable = go.GetComponent<Interactable>();
         if (interactable != null && interactable.IsInteracting)
         {
@@ -87,6 +88,7 @@ public class TrainCar : MonoBehaviour
         leftSideUpgradeGO = null;
 
         var spawnedUpgrade = SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: true);
+        leftSideUpgradeGO = spawnedUpgrade;
 
         var repairGO = Instantiate(RepairSidePrefab);
         repairGO.transform.parent = transform;
@@ -94,11 +96,15 @@ public class TrainCar : MonoBehaviour
         var repairInteractable = repairGO.GetComponent<RepairInteractable>();
         repairInteractable.RepairCompleted.AddListener(delegate
         {
+            Debug.Log("Left Repair completed!");
             leftSideDamageable.CurrentHealth = leftSideDamageable.MaxHealth;
             leftSideDamageable.enabled = true;
-            SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: false);
 
-            Destroy(repairInteractable.gameObject);
+            DisableUpgradeInteractable(leftSideUpgradeGO);
+            Destroy(leftSideUpgradeGO);
+            leftSideUpgradeGO = null;
+
+            leftSideUpgradeGO = SpawnTrainUpgrade(leftSideUpgradeData, leftSideSlot, leftSide: true, destroyed: false);
         });
     }
 
@@ -109,6 +115,7 @@ public class TrainCar : MonoBehaviour
         rightSideUpgradeGO = null;
 
         var spawnedUpgrade = SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
+        rightSideUpgradeGO = spawnedUpgrade;
 
         var repairGO = Instantiate(RepairSidePrefab);
         repairGO.transform.parent = transform;
@@ -116,11 +123,15 @@ public class TrainCar : MonoBehaviour
         var repairInteractable = repairGO.GetComponent<RepairInteractable>();
         repairInteractable.RepairCompleted.AddListener(delegate
         {
+            Debug.Log("Right Repair completed!");
             rightSidDamageable.CurrentHealth = rightSidDamageable.MaxHealth;
             rightSidDamageable.enabled = true;
-            SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: true);
 
-            Destroy(repairInteractable.gameObject);
+            DisableUpgradeInteractable(rightSideUpgradeGO);
+            Destroy(rightSideUpgradeGO);
+            rightSideUpgradeGO = null;
+
+            rightSideUpgradeGO = SpawnTrainUpgrade(rightSideUpgradeData, rightSideSlot, leftSide: false, destroyed: false);
         });
     }
 

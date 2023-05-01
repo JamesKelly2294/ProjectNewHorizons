@@ -44,6 +44,8 @@ public class RepairInteractable : MonoBehaviour
     {
         EndControl(_player);
         RepairCompleted.Invoke();
+
+        Destroy(gameObject);
     }
 
     public void BeginControl(Player player)
