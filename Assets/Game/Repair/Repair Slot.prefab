@@ -814,7 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProgressBar: {fileID: 1963524550887274016}
   Progress: 0
-  TimeToRepair: 7.5
+  TimeToRepair: 5
   RepairCompleted:
     m_PersistentCalls:
       m_Calls: []

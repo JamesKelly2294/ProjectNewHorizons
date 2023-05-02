@@ -191,7 +191,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -390,8 +390,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282822865
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -494,8 +494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 943.045, y: -50}
-  m_SizeDelta: {x: 643.9099, y: 70}
+  m_AnchoredPosition: {x: 1191.47, y: -50}
+  m_SizeDelta: {x: 1427.06, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201728887
 MonoBehaviour:
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Spooky scary skeletons send shivers down my spine
+  m_text: The thing people don't realize about the Gear Wars is...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
   m_sharedMaterial: {fileID: -3102424155921570924, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
@@ -526,8 +526,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282822865
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -734,8 +734,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 377.11, y: -50}
-  m_SizeDelta: {x: 704.22, y: 100}
+  m_AnchoredPosition: {x: 454.515, y: -50}
+  m_SizeDelta: {x: 859.03, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279268057
 MonoBehaviour:
@@ -757,7 +757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Night of the Spook
+  m_text: The Clockwork Express
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
   m_sharedMaterial: {fileID: -3102424155921570924, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
@@ -766,8 +766,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278225919
-  m_fontColor: {r: 1, g: 0.54509807, b: 0, a: 1}
+    rgba: 4282822865
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -960,7 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.89473677, b: 1, a: 1}
+  m_Color: {r: 0.6603774, g: 0.32934588, b: 0.15263441, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1022,7 +1022,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3600, y: 0}
+  m_SizeDelta: {x: 5400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361061190
 MonoBehaviour:
@@ -1217,7 +1217,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 3600, y: 0}
+  m_SizeDelta: {x: 5400, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &449415541
 MonoBehaviour:
@@ -1308,8 +1308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -720}
-  m_SizeDelta: {x: 1280, y: 100}
+  m_AnchoredPosition: {x: 960, y: -1080}
+  m_SizeDelta: {x: 1920, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &460567947
 MonoBehaviour:
@@ -1458,7 +1458,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1764,7 +1764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.89473677, b: 1, a: 1}
+  m_Color: {r: 0.6603774, g: 0.32934588, b: 0.15263441, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1856,8 +1856,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282822865
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2421,8 +2421,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -360}
-  m_SizeDelta: {x: 1280, y: 520}
+  m_AnchoredPosition: {x: 960, y: -540}
+  m_SizeDelta: {x: 1920, y: 880}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527339829
 MonoBehaviour:
@@ -2480,8 +2480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -310}
-  m_SizeDelta: {x: 1280, y: 620}
+  m_AnchoredPosition: {x: 960, y: -490}
+  m_SizeDelta: {x: 1920, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1570761340
 MonoBehaviour:
@@ -2539,8 +2539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 645, y: -50}
-  m_SizeDelta: {x: 1240, y: 70}
+  m_AnchoredPosition: {x: 965, y: -50}
+  m_SizeDelta: {x: 1880, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1613943143
 MonoBehaviour:
@@ -2582,9 +2582,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Armed with the newly minted Spookbuster\u2122, our hero bravely ventures
-    forth into the decrepit pit of ghosts and ghouls. Be warned, however, for the
-    Spookbuster\u2122 needs 10 seconds to cool down."
+  m_text: Congratulations, J.B. Gearsworth III. As a newly promoted Captain under
+    Brass & Copper Deliveries, Co., you have been granted command of your very own
+    airship - The Clockwork Express. Ensure our clients receive their packages, no
+    matter the cost. Our profits are in your hands.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
   m_sharedMaterial: {fileID: -3102424155921570924, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
@@ -2593,8 +2594,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282822865
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2611,7 +2612,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.4
+  m_fontSize: 25.75
   m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2954,7 +2955,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 6.0054, y: -67.1507}
-  m_SizeDelta: {x: 1366.8821, y: 134.3013}
+  m_SizeDelta: {x: 1942.8821, y: 134.3013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1676979533
 MonoBehaviour:
@@ -3016,7 +3017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f9f80494e84ff48ac869bccc76261267, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 527a3a251043fc743a8915b1573e3dac, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3072,7 +3073,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 6.0054, y: -67.1507}
-  m_SizeDelta: {x: 1366.8821, y: 134.3013}
+  m_SizeDelta: {x: 1942.8821, y: 134.3013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1735594528
 MonoBehaviour:
@@ -3134,7 +3135,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f85adb3107e06446fbeff62ad90550e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 178a44d7b0377b54bac1c958b1090360, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3292,8 +3293,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 315.545, y: -50}
-  m_SizeDelta: {x: 581.09, y: 70}
+  m_AnchoredPosition: {x: 243.97, y: -50}
+  m_SizeDelta: {x: 437.94, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1748878143
 MonoBehaviour:
@@ -3315,7 +3316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ludum Dare 51 - Every 10 Seconds
+  m_text: Ludum Dare 53 - Delivery
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
   m_sharedMaterial: {fileID: -3102424155921570924, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
@@ -3324,8 +3325,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282822865
+  m_fontColor: {r: 0.81960785, g: 0.6901961, b: 0.27450982, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3538,8 +3539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -720}
-  m_SizeDelta: {x: 1280, y: 100}
+  m_AnchoredPosition: {x: 960, y: -1080}
+  m_SizeDelta: {x: 1920, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1770375046
 MonoBehaviour:
@@ -3701,8 +3702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: 0}
-  m_SizeDelta: {x: 1280, y: 100}
+  m_AnchoredPosition: {x: 960, y: 0}
+  m_SizeDelta: {x: 1920, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2117417800
 MonoBehaviour:

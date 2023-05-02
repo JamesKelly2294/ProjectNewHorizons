@@ -115,16 +115,16 @@ public class PackageGunBottomBar : MonoBehaviour
     {
         switch (packageType)
         {
-            case PackageType.automaton:         return   100_000;
-            case PackageType.camera:            return    10_000;
-            case PackageType.gears:             return        50;
-            case PackageType.goggles:           return        50;
-            case PackageType.keyboard:          return       100;
-            case PackageType.masqueradeMask:    return       500;
-            case PackageType.musicBox:          return       200;
-            case PackageType.necklace:          return     4_000;
-            case PackageType.pocketWatch:       return     2_000;
-            case PackageType.steamPipe:         return       100;
+            case PackageType.automaton:         return    50_000;
+            case PackageType.camera:            return    20_000;
+            case PackageType.gears:             return      5000;
+            case PackageType.goggles:           return      2500;
+            case PackageType.keyboard:          return     15000;
+            case PackageType.masqueradeMask:    return     35000;
+            case PackageType.musicBox:          return     17500;
+            case PackageType.necklace:          return     12500;
+            case PackageType.pocketWatch:       return      8500;
+            case PackageType.steamPipe:         return      1000;
             default:                            return         0;
         }
     }

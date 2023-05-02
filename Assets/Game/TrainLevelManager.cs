@@ -149,7 +149,14 @@ public class TrainLevelManager : MonoBehaviour
         {
             _missionOutroGUI.HeaderLabel.text = "J.B. Gearsworth III, Captain";
             _missionOutroGUI.ShipStatusLabel.text = "Hull integrity maintained";
-            _missionOutroGUI.PressToContinueLabel.text = "Press Space For Your Next Delivery";
+            if(Level == Level.Three)
+            {
+                _missionOutroGUI.PressToContinueLabel.text = "Press Space To Win";
+            }
+            else
+            {
+                _missionOutroGUI.PressToContinueLabel.text = "Press Space For Your Next Delivery";
+            }
             AudioManager.Instance.Play("Win");
         }
         else if (lostLevel)
