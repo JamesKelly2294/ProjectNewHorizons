@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 636951401110336887}
   - component: {fileID: 6739392460056308439}
   - component: {fileID: 1510985987120734356}
+  - component: {fileID: 1981212444810823296}
   m_Layer: 18
   m_Name: Enemy Bullet
   m_TagString: Untagged
@@ -129,6 +130,18 @@ MonoBehaviour:
   OnDamage:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1981212444810823296}
+        m_TargetAssemblyTypeName: Impact, Assembly-CSharp
+        m_MethodName: Go
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 6019058097268572847}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -157,3 +170,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &1981212444810823296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6019058097268572847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0da1066cafc64948b83b9bde20f8464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  system: {fileID: 7303844131470602733, guid: c8f6245fa86e34b658d03189a9ccba38, type: 3}
