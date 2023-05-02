@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public enum TrainSide
 {
     Left = 0,
     Right = 1,
+}
+
+public struct MailLoverConfig
+{
+    public PackageType DesiredPackageType;
+    public int DesiredPackageCount;
 }
 
 public class EntitySquadCoordinator : MonoBehaviour
@@ -23,23 +30,29 @@ public class EntitySquadCoordinator : MonoBehaviour
     public float SpawnInterval = 5.0f;
     public float SpawnTimer;
 
-    [Range(0, 1.0f)]
-    public float MailLoverChance = 0.2f;
+    private float MailLoverSpawnInterval;
+    public float MailLoverSpawnTimer;
+
+    public int MaxEntityCount = 25;
 
     private TrainLevelManager _trainLevelManager;
     private Train _theTrain;
+    private Inventory _theInventory;
 
     private GameObject _spawnedEntitiesContainer;
+    private List<MailLoverConfig> _mailLoverConfigsToSpawn;
 
     // Start is called before the first frame update
     void Start()
     {
         _theTrain = FindAnyObjectByType<Train>();
         _trainLevelManager = FindAnyObjectByType<TrainLevelManager>();
+        _theInventory = FindAnyObjectByType<Inventory>();
 
         ResetState();
     }
 
+    private Dictionary<PackageType, int> _cachedInventory = null;
     public void ResetState()
     {
         if (_spawnedEntitiesContainer != null)
@@ -51,21 +64,91 @@ public class EntitySquadCoordinator : MonoBehaviour
         _spawnedEntitiesContainer = new GameObject("Spawned Entities");
         _spawnedEntitiesContainer.transform.parent = transform;
         SpawnTimer = SpawnInterval;
+
+        var multiplier = 1.0f;
+        switch (_trainLevelManager.Level)
+        {
+            case Level.Two:
+                multiplier = 0.9f;
+                break;
+            case Level.Three:
+                multiplier = 0.8f;
+                break;
+            default:
+                multiplier = 1.0f;
+                break;
+        }
+        SpawnTimer = SpawnTimer * multiplier;
+
+        _cachedInventory = null;
+        _mailLoverConfigsToSpawn = GenerateMailLoverConfigs();
+        MailLoverSpawnTimer = 0.1f;
+        MailLoverSpawnInterval = (_trainLevelManager.LevelTime - 15.0f) / _mailLoverConfigsToSpawn.Count;
     }
 
     public void SpawnEnemySquad()
     {
+        if (_spawnedEntitiesContainer.transform.childCount >= MaxEntityCount)
+        {
+            Debug.Log("Too many entities. Not spawning more enemies.");
+            return;
+        }
         SpawnSquad(EnemySquadPrefab);
+    }
+
+    public List<MailLoverConfig> GenerateMailLoverConfigs()
+    {
+        _cachedInventory = new Dictionary<PackageType, int>(_theInventory.PackageInventory);
+
+        List<MailLoverConfig> configs = new List<MailLoverConfig>();
+
+        while (_cachedInventory.Count > 0)
+        {
+            var randomPackageType = _cachedInventory.Keys.ToList()[Random.Range(0, _cachedInventory.Keys.Count)];
+            var amountAvailable = _cachedInventory[randomPackageType];
+            var randomAmountToGrab = Random.Range(1, amountAvailable + 1);
+
+            _cachedInventory[randomPackageType] -= randomAmountToGrab;
+            if (_cachedInventory[randomPackageType] <= 0)
+            {
+                _cachedInventory.Remove(randomPackageType);
+            }
+
+            var config = new MailLoverConfig
+            {
+                DesiredPackageCount = randomAmountToGrab,
+                DesiredPackageType = randomPackageType
+            };
+
+            configs.Add(config);
+        }
+
+        return configs;
     }
 
     public void SpawnMailLoverSquad()
     {
-        SpawnSquad(MailLoverSquadPrefab);
+        if (_mailLoverConfigsToSpawn.Count == 0) { return; }
+
+        var squad = SpawnSquad(MailLoverSquadPrefab);
+        if (squad == null) { return; }
+
+        var mailLover = squad.GetComponentInChildren<MailLover>();
+        if (mailLover == null) { return; }
+
+
+        var config = _mailLoverConfigsToSpawn[0];
+        _mailLoverConfigsToSpawn.RemoveAt(0);
+
+        Debug.Log("Reserving mail lover for " + config.DesiredPackageCount + " " + config.DesiredPackageType.ToString());
+
+        mailLover.DesiredPackageType = config.DesiredPackageType;
+        mailLover.DesiredPackageAmount = config.DesiredPackageCount;
     }
 
-    public void SpawnSquad(GameObject squadPrefab)
+    public GameObject SpawnSquad(GameObject squadPrefab)
     {
-        if (!Application.isPlaying) { return; }
+        if (!Application.isPlaying) { return null; }
 
         TrainSide side = TrainSide.Right;
         if (Random.Range(0, 1.0f) < 0.5f) { side = TrainSide.Left; }
@@ -81,6 +164,8 @@ public class EntitySquadCoordinator : MonoBehaviour
 
         var EntitySquad = EntitySquadGO.GetComponent<EntitySquad>();
         EntitySquad.SetTarget(targetGO.transform);
+
+        return EntitySquadGO;
     }
 
     public Vector3 SelectSpawnPosition(TrainSide side)
@@ -193,14 +278,7 @@ public class EntitySquadCoordinator : MonoBehaviour
 
     public void SpawnNextSquad()
     {
-        if (Random.Range(0, 1.0f) < MailLoverChance)
-        {
-            SpawnMailLoverSquad();
-        }
-        else
-        {
-            SpawnEnemySquad();
-        }
+        SpawnEnemySquad();
     }
 
     // Update is called once per frame
@@ -217,6 +295,14 @@ public class EntitySquadCoordinator : MonoBehaviour
             }
 
             SpawnTimer -= Time.deltaTime;
+
+            if (MailLoverSpawnTimer < 0)
+            {
+                MailLoverSpawnTimer += MailLoverSpawnInterval;
+                SpawnMailLoverSquad();
+            }
+
+            MailLoverSpawnTimer -= Time.deltaTime;
         }
     }
 }

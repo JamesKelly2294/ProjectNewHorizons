@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MailGunLeft
       objectReference: {fileID: 0}
+    - target: {fileID: 6331273631296141222, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
+      propertyPath: CurrentHealth
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 7938300991046617695, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
       propertyPath: m_RootOrder
       value: 0

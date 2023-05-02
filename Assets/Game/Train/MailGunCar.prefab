@@ -17,7 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4333df38f4e819746899d7be583ebfe3, type: 2}
     - target: {fileID: 1052283326658444984, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
       propertyPath: m_Name
-      value: Forward Starter Train Car Variant
+      value: MailGunCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693441347249478733, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
+      propertyPath: CurrentHealth
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331273631296141222, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
+      propertyPath: CurrentHealth
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7938300991046617695, guid: c76d166a0ae35104cb2a7e4b9fa826e4, type: 3}
       propertyPath: m_RootOrder

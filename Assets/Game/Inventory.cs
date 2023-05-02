@@ -56,22 +56,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PackageInventory[PackageType.automaton] = 4;
-        PackageInventory[PackageType.gears] = 3;
-        PackageInventory[PackageType.camera] = 2;
-        PackageInventory[PackageType.goggles] = 12;
-        PackageInventory[PackageType.keyboard] = 2;
-        PackageInventory[PackageType.masqueradeMask] = 3;
-        PackageInventory[PackageType.musicBox] = 5;
-        PackageInventory[PackageType.necklace] = 6;
-        PackageInventory[PackageType.pocketWatch] = 4;
-        PackageInventory[PackageType.steamPipe] = 3;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        FillInventoryForLevel(Level.One);
     }
 
     public void PackageWasShot(object package)
@@ -119,5 +104,43 @@ public class Inventory : MonoBehaviour
         PackagesDelivered.Clear();
         PackagesLost.Clear();
         PackageInventory.Clear();
+    }
+
+    public void FillInventoryForLevel(Level level)
+    {
+        Clear();
+        switch (level)
+        {
+            case Level.Two:
+                PackageInventory[PackageType.automaton] = 1;
+                PackageInventory[PackageType.gears] = 4;
+                PackageInventory[PackageType.camera] = 2;
+                PackageInventory[PackageType.keyboard] = 2;
+                PackageInventory[PackageType.masqueradeMask] = 2;
+                PackageInventory[PackageType.musicBox] = 2;
+                PackageInventory[PackageType.necklace] = 2;
+                PackageInventory[PackageType.steamPipe] = 4;
+                break;
+
+            case Level.Three:
+                PackageInventory[PackageType.automaton] = 2;
+                PackageInventory[PackageType.gears] = 4;
+                PackageInventory[PackageType.camera] = 4;
+                PackageInventory[PackageType.goggles] = 4;
+                PackageInventory[PackageType.keyboard] = 4;
+                PackageInventory[PackageType.masqueradeMask] = 4;
+                PackageInventory[PackageType.musicBox] = 4;
+                PackageInventory[PackageType.necklace] = 4;
+                PackageInventory[PackageType.pocketWatch] = 4;
+                PackageInventory[PackageType.steamPipe] = 4;
+                break;
+
+            default:
+                PackageInventory[PackageType.automaton] = 1;
+                PackageInventory[PackageType.gears] = 2;
+                PackageInventory[PackageType.steamPipe] = 2;
+                PackageInventory[PackageType.goggles] = 4;
+                break;
+        }
     }
 }

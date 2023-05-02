@@ -32,8 +32,7 @@ public class Train : MonoBehaviour
         playerGO.transform.name = "Player";
         playerGO.transform.parent = transform;
         player = playerGO.GetComponent<Player>();
-
-
+        
         ResetState();
     }
 

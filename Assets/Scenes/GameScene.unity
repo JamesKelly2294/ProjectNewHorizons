@@ -2224,7 +2224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6241351012713294041, guid: 991a5fb9f6cd3e14a85ae121290ab52b, type: 3}
       propertyPath: CurrentHealth
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 991a5fb9f6cd3e14a85ae121290ab52b, type: 3}
@@ -2710,7 +2710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1958461046023914037, guid: b8c8080e582616943bb7ac5129c4ebb1, type: 3}
       propertyPath: SpawningEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1958461046023914038, guid: b8c8080e582616943bb7ac5129c4ebb1, type: 3}
       propertyPath: m_RootOrder
@@ -2812,6 +2812,10 @@ PrefabInstance:
     - target: {fileID: 3388865214940183644, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
       propertyPath: m_Name
       value: Camera Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388865214995900071, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
+      propertyPath: antialiasingMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93c5c62fd32f2a8499c4b8507c3a2645, type: 3}
@@ -4005,7 +4009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8100863982438747653, guid: 62b098600f465cc4f867564f8689221a, type: 3}
       propertyPath: LevelTime
-      value: 10
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62b098600f465cc4f867564f8689221a, type: 3}

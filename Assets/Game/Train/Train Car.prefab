@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  CurrentHealth: 200
+  CurrentHealth: 150
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
-  CurrentHealth: 200
+  CurrentHealth: 150
   OnDamage:
     m_PersistentCalls:
       m_Calls: []

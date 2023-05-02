@@ -37,9 +37,9 @@ public class MailLover : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        var allValues = Enum.GetValues(typeof(PackageType));
-        DesiredPackageType = (PackageType)allValues.GetValue(UnityEngine.Random.Range(0, allValues.Length));
-        DesiredPackageAmount = UnityEngine.Random.Range(1, 3);
+        //var allValues = Enum.GetValues(typeof(PackageType));
+        //DesiredPackageType = (PackageType)allValues.GetValue(UnityEngine.Random.Range(0, allValues.Length));
+        //DesiredPackageAmount = UnityEngine.Random.Range(1, 3);
     }
 
     // Update is called once per frame

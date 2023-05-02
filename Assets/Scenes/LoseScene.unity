@@ -250,7 +250,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: We hope you had fun, we sure did!
+  m_text: 'You lost - your Locomotive took too much damage!
+
+    Why not return to
+    the main menu and try again?
+
+
+    We hope you had fun, we sure did. :)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}
   m_sharedMaterial: {fileID: -3102424155921570924, guid: c6436c44c14384674ac67f254d4f8ccc, type: 2}

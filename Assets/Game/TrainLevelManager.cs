@@ -72,6 +72,7 @@ public class TrainLevelManager : MonoBehaviour
 
         if (State == TrainLevelState.Intro)
         {
+            ResetState();
             StartCoroutine(PlayIntroSequence());
         }
         else
@@ -90,7 +91,7 @@ public class TrainLevelManager : MonoBehaviour
 
         enemiesKilled = 0;
 
-        _theInventory.Clear();
+        _theInventory.FillInventoryForLevel(Level);
         _theSquadCoordinator.ResetState();
         _theTrain.ResetState();
     }
@@ -102,7 +103,8 @@ public class TrainLevelManager : MonoBehaviour
 
     public void IncrementLevel()
     {
-        //ahahahahaha
+        //ahahahahaha, coding!
+
         if (Level == Level.One)
         {
             Level = Level.Two;
@@ -113,9 +115,31 @@ public class TrainLevelManager : MonoBehaviour
         }
 
         TrueLevel += 1;
+
+        OriginCity = NextCity(OriginCity);
+        DestinationCity = NextCity(DestinationCity);
+
+        _theSteamGameManager.OriginCity = OriginCity;
+        _theSteamGameManager.DestinationCity = DestinationCity;
     }
 
-    private float _fadeFromBlackTime = 2.5f;
+    // NO TIME TO IMPLEMENT DYNAMIC LOGIC LOLOLOL
+    public City NextCity(City city)
+    {
+        switch (city)
+        {
+            case City.gearton:
+                return City.geartonsteamshireville;
+            case City.geartonsteamshireville:
+                return City.steamerly;
+            case City.steamerly:
+                return City.gearton;
+            default:
+                return City.gearton;
+        }
+    }
+
+    private float _fadeFromBlackTime = 1.0f;
 
     IEnumerator PlayOutroSequence()
     {
@@ -242,8 +266,19 @@ public class TrainLevelManager : MonoBehaviour
             {
                 if (wonLevel)
                 {
-                    State = TrainLevelState.Intro;
-                    StartCoroutine(PlayOutroToIntroTransition());
+                    if (Level == Level.Three)
+                    {
+                        var gm = FindFirstObjectByType<GameManager>();
+                        if (gm != null)
+                        {
+                            gm.ShowWinScreen();
+                        }
+                    }
+                    else
+                    {
+                        State = TrainLevelState.Intro;
+                        StartCoroutine(PlayOutroToIntroTransition());
+                    }
                 }
                 else
                 {
