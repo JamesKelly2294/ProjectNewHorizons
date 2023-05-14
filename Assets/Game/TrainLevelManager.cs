@@ -12,11 +12,11 @@ public enum TrainLevelState {
     WaitingToExitOutro,
 }
 
-public enum Level
+public enum Level: int
 {
-    One,
-    Two,
-    Three
+    One = 0,
+    Two = 1,
+    Three = 2,
 }
 
 public class TrainLevelManager : MonoBehaviour
@@ -49,7 +49,17 @@ public class TrainLevelManager : MonoBehaviour
     public bool wonLevel = false;
     public bool lostLevel = false;
 
-    private int enemiesKilled = 0;
+    private int enemiesKilledThisLevel = 0;
+    private int enemiesKilledTotal = 0;
+
+    private int packagesDeliveredThisLevel = 0;
+    private int packagesDeliveredTotal = 0;
+
+    private int packagesLostThisLevel = 0;
+    private int packagesLostTotal = 0;
+
+    private int moneyEarnedThisLevel = 0;
+    private int moneyEarnedTotal = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +99,10 @@ public class TrainLevelManager : MonoBehaviour
         wonLevel = false;
         lostLevel = false;
 
-        enemiesKilled = 0;
+        enemiesKilledThisLevel = 0;
+        packagesDeliveredThisLevel = 0;
+        packagesLostThisLevel = 0;
+        moneyEarnedThisLevel = 0;
 
         _theInventory.FillInventoryForLevel(Level);
         _theSquadCoordinator.ResetState();
@@ -98,13 +111,48 @@ public class TrainLevelManager : MonoBehaviour
 
     public void EnemyKilled()
     {
-        enemiesKilled += 1;
+        enemiesKilledThisLevel += 1;
+        enemiesKilledTotal += 1;
+    }
+
+    public void PackageDelivered()
+    {
+        packagesDeliveredThisLevel += 1;
+        packagesDeliveredTotal += 1;
+    }
+
+    public void PackageLost()
+    {
+        packagesLostThisLevel += 1;
+        packagesLostTotal += 1;
+    }
+
+    public void MoneyEarned(PubSubListenerEvent e)
+    {
+        moneyEarnedThisLevel += (int)e.value;
+        moneyEarnedTotal += (int)e.value;
+    }
+
+    private void FireLevelCompletedEvent(bool levelWon)
+    {
+        JamAnalytics.Instance.FireLevelCompletedEvent(
+            levelNumber: (int)Level,
+            levelWon: levelWon,
+            enemiesKilledTotal: enemiesKilledTotal,
+            moneyEarnedTotal: moneyEarnedTotal,
+            packagesDeliveredTotal: packagesDeliveredTotal,
+            packagesLostTotal: packagesLostTotal,
+            enemiesKilledThisLevel: enemiesKilledThisLevel,
+            moneyEarnedThisLevel: moneyEarnedThisLevel,
+            packagesDeliveredThisLevel: packagesDeliveredThisLevel,
+            packagesLostThisLevel: packagesLostThisLevel);
     }
 
     public void IncrementLevel()
     {
-        //ahahahahaha, coding!
+        FireLevelCompletedEvent(true);
 
+        //ahahahahaha, coding!
         if (Level == Level.One)
         {
             Level = Level.Two;
@@ -171,7 +219,7 @@ public class TrainLevelManager : MonoBehaviour
         _missionOutroGUI.CargoDeliveredLabel.text = _theInventory.CargoString(_theInventory.PackagesDelivered);
         _missionOutroGUI.CargoLostLabel.text = _theInventory.CargoString(_theInventory.PackagesLost);
 
-        _missionOutroGUI.BountiesLabel.text = enemiesKilled + " Steam Punks liquidated";
+        _missionOutroGUI.BountiesLabel.text = enemiesKilledThisLevel + " Steam Punks liquidated";
 
         _missionOutroGUI.PressToContinueLabel.color = Color.clear;
 
@@ -278,6 +326,7 @@ public class TrainLevelManager : MonoBehaviour
                         var gm = FindFirstObjectByType<GameManager>();
                         if (gm != null)
                         {
+                            FireLevelCompletedEvent(true);
                             gm.ShowWinScreen();
                         }
                     }
@@ -292,6 +341,7 @@ public class TrainLevelManager : MonoBehaviour
                     var gm = FindFirstObjectByType<GameManager>();
                     if (gm != null)
                     {
+                        FireLevelCompletedEvent(false);
                         gm.ShowLoseScreen();
                     }
                 }
